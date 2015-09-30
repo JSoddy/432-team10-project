@@ -13,4 +13,25 @@ In most modern networks their is a stable, generally deterministic, data structu
 
 < Closing Par>
 
+ Tao's part (quantum computation and factoring)
+
+
+
+Compared to a classic computer with a random number generator, a quantum computer is like a computer with a random number generator integrated into its basic computing circuits. This new aspect enables the computer to perform tasks that involve specific uncertainty in every step of computation more easily, though there's no such a physical computing system existing now. On the other hand, factoring big integers is a notoriously hard problem, especially for a deterministic computer, as the only clue we have about possible factors is the changing probability of a number being a factor when the computation goes on.
+
+
+In terms of factoring, the best method we have now is based on probability of a number being a factor of a number. Therefore factoring lends itself more to quantum computation than to classic deterministic computation. In order to design a coherent computing system, we need to put some constraints on the quantum physics, essentially the same way we give rules to transistors to switch status when designing a classic computing system.
+
+
+There are some defining differences involved in quantum computation which need novel design of the computing system.
+
+
+Referring to quantum physics, we know that a particle can be in different positions at the same time with different probabilities. However, the total probabilities of being in all positions sum up to 1. In such a light, a quantum state representing some possible outputs should have the sum of possibilities of being in all positions equal to 1. Thus only a unitary transformation is allowed in quantum computation. This guarantees total probabilities equal to 1.
+
+
+As the quantum physics laws are completely reversible, despite of the arrow of time. Therefore deterministic computation can be performed on a quantum computer only if it is reversible. Thus storing intermediate results can enable us to go around the difficulty.
+
+
+A quantum gate is like a logic circuit in a classic computer which produces output when reading input. When the task in specified, the algorithm can be integrated into a quantum gate. For instance, when we have a calculation as $x^a=b$ mod n, we build n and x into the gate and use a as the input.
+
 \end{document}
