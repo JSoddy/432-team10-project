@@ -24,66 +24,63 @@ of multiple complete genomes per species leads to a desire for more than
 one reference sequence per species. Older models in computational 
 genomics do not have the power required to adequately handle multiple 
 reference genomes. It is now seen as desirable to create a pan-genome, 
-a single representation of all available gene sequences from a species 
+a single representation of all available gene sequences from a species, 
 which can be viewed as a single entity. The SplitMEM algorithm is 
 designed to take multiple genomic lines and convert them to a compressed
- de Bruijn graph pan-genome representation, which will enable the 
- isolation of common features in the genomes so that characteristics 
- of the entire species or clade can be identified while gene sequences 
- specific to an individual organism can be de-emphasized.
+de Bruijn graph pan-genome representation, which will enable the 
+isolation of common features in the genomes so that characteristics 
+of the entire species or clade can be identified while gene sequences 
+specific to an individual organism can be de-emphasized.
 
 
 In most modern networks their is a stable, generally deterministic, data
-structure in place to handle requests. Unfortunately by definition these
-deterministic systems are very predictable and because of their
-predictability they can be abused. Users who understand the nature of 
+structure in place to handle requests. By definition, these
+deterministic systems are very predictable. Unfortunately, because of their
+predictability, they can be abused. Users who understand the nature of 
 the network can overload the system with a series of time consuming
-requests which eventually bog down the network. These denial-of-service,
-D.O.S., attacks can occur for a variety of reasons ranging from 
+requests, which eventually bog down the network. These denial-of-service
+(D.O.S.) attacks can occur for a variety of reasons ranging from 
 breaching security to gaining an advantage in competitive gaming. In 
-general D.O.S. attacks rely on knowing how the network will respond to 
-a every unique request. In theory if they could not predict a networks 
-reaction they could not D.O.S. the network. Knowing this the problem 
-now becomes creating a data structure that has unpredictable timings 
+general, D.O.S. attacks rely on knowing how the network will respond to 
+every request. In theory, if an adversary could not predict a network's 
+response, then they could not mount a D.O.S. attack on the network. 
+Knowing this, we can proceed in 
+creating a data structure that has unpredictable timing 
 for any given input, while still performing at a near optimal speed. 
-This new data structure must be able to perform the same operations as 
+Such a data structure must be able to perform the same operations as 
 the original system, while also non-deterministically, i.e. randomly, 
-altering itself. This new system should be able to resist all attackers,
- even attackers who know the algorithm and the previous i/o values used. 
-
- Tao's part (quantum computation and factoring)
+altering itself. This new system should be able to resist all timing-
+dependant attacks,
+even from attackers who know the algorithm and the previous i/o values used.
+In their paper, Darrell Bethea and Michael K. Reiter discuss a data
+structure for set operations with these desirable characteristics.
 
 Compared to a classic computer with a random number generator, a 
 quantum computer is like a computer with a random number generator 
 integrated into its basic computing circuits. This new aspect enables 
-the computer to perform tasks that involve specific uncertainty in every
-step of computation more easily, though there's no such a physical 
-computing system existing now. On the other hand, factoring big 
-integers is a notoriously hard problem, especially for a deterministic 
-computer, as the only clue we have about possible factors is the 
-changing probability of a number being a factor when the computation 
-goes on.
+the computer to perform tasks which involve specific uncertainty in every
+step of computation more easily. << though there's no such a physical 
+computing system existing now. On the other hand, >> 
 
-In terms of factoring, the best method we have now is based on 
-probability of a number being a factor of a number. Therefore factoring
-lends itself more to quantum computation than to classic deterministic
-computation. In order to design a coherent computing system, we need to
+Factoring large  integers is a notoriously hard problem for deterministic 
+computing machines. The best method we have now  for factoring is based 
+on the probability of a given number being a factor of a larger number. 
+Therefore, factoring is a problem which naturally lends itself more to 
+quantum computation than to classic deterministic computation. In order to design a coherent computing system, we need to
 put some constraints on the quantum physics, essentially the same way we
 give rules to transistors to switch status when designing a classic 
 computing system.
 
 There are some defining differences involved in quantum computation
-which need novel design of the computing system.
-
-Referring to quantum physics, we know that a particle can be in 
+which need novel design of the computing system. Referring to quantum
+physics, we know that a particle can be in 
 different positions at the same time with different probabilities. 
 However, the total probabilities of being in all positions sum up to 1. 
 In such a light, a quantum state representing some possible outputs
 should have the sum of possibilities of being in all positions equal to
 1. Thus only a unitary transformation is allowed in quantum computation.
-This guarantees total probabilities equal to 1.
-
-As the quantum physics laws are completely reversible, despite of the
+This guarantees total probabilities equal to 1. As the quantum physics 
+laws are completely reversible, despite of the
 arrow of time. Therefore deterministic computation can be performed on
 a quantum computer only if it is reversible. Thus storing intermediate
 results can enable us to go around the difficulty.
