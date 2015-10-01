@@ -55,41 +55,29 @@ even from attackers who know the algorithm and the previous i/o values used.
 In their paper, Darrell Bethea and Michael K. Reiter discuss a data
 structure for set operations with these desirable characteristics.
 
-Compared to a classic computer with a random number generator, a 
-quantum computer is like a computer with a random number generator 
-integrated into its basic computing circuits. This new aspect enables 
-the computer to perform tasks which involve specific uncertainty in every
-step of computation more easily. << though there's no such a physical 
-computing system existing now. On the other hand, >> 
-
 Factoring large  integers is a notoriously hard problem for deterministic 
 computing machines. The best method we have now  for factoring is based 
 on the probability of a given number being a factor of a larger number. 
-Therefore, factoring is a problem which naturally lends itself more to 
-quantum computation than to classic deterministic computation. In order to design a coherent computing system, we need to
-put some constraints on the quantum physics, essentially the same way we
-give rules to transistors to switch status when designing a classic 
-computing system.
-
+Therefore, factoring is a problem which naturally lends itself to a
+quantum computer. A quantum computer behaves like a computer with a 
+random number generator integrated into each basic computing circuit.
+This new aspect enables the computer to perform tasks which involve 
+specific uncertainty in every step of computation much more easily.
 There are some defining differences involved in quantum computation
 which need novel design of the computing system. Referring to quantum
 physics, we know that a particle can be in 
 different positions at the same time with different probabilities. 
 However, the total probabilities of being in all positions sum up to 1. 
-In such a light, a quantum state representing some possible outputs
+Because of this, a quantum state representing some possible outputs
 should have the sum of possibilities of being in all positions equal to
 1. Thus only a unitary transformation is allowed in quantum computation.
-This guarantees total probabilities equal to 1. As the quantum physics 
-laws are completely reversible, despite of the
-arrow of time. Therefore deterministic computation can be performed on
-a quantum computer only if it is reversible. Thus storing intermediate
-results can enable us to go around the difficulty.
-
-A quantum gate is like a logic circuit in a classic computer which
-produces output when reading input. When the task in specified, the
-algorithm can be integrated into a quantum gate. For instance, when we
-have a calculation as $x^a=b$ mod n, we build n and x into the gate and
-use a as the input.
+This guarantees total probabilities equal to 1. Although there are no
+real quantum computers at this point, it is useful to consider algorithms
+to run on it, partly because they may be built in the future, but also
+because those algorithms may be modeled on current computing machines.
+Peter Shor proposed an algorithm which takes advantage of the properties
+of quantum computers to factor prime numbers in time polynomial to the
+size of the integer to be factored.
 
 
 < Closing Par>
