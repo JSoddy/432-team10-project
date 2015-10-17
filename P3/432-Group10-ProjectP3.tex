@@ -1,5 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 %opening
 \title{CSCI 432, Group Project Part 3}
@@ -38,6 +40,32 @@ structure for set operations with these desirable characteristics\cite{Bethea09}
 %Conclusion
 
 %Algorithm
+
+\begin{algorithm}
+\caption{AlgorithmName}
+\textbf{Input:} Inputs
+\textbf{Output:} Outputs
+
+\begin{algorithmic}[1]
+\State $A \gets intarray$
+\State $V \gets intarray$
+\For{i = 1 to v}
+	\For{j = 1 to n}
+		\If{D[j] = i}
+			\State $A[i-1] \gets 1$
+			\State $V[i-1] \gets D[j]$
+		\ElsIf{D[j] \textless i}
+			\If{A[i-D[j]-1]+1 \textless A[i-1]}
+			\State $A[i-1] \gets A[i-D[j]-1]+1$
+			\State $V[i-1] \gets D[j]$
+			\EndIf
+		\EndIf
+	\EndFor
+\EndFor
+
+\Return A[max]
+\end{algorithmic}
+\end{algorithm}
 
 \pagebreak
 
