@@ -1,5 +1,5 @@
-\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\documentclass[10pt]{article}
+\usepackage[margin=.75in]{geometry}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
@@ -53,12 +53,7 @@ algorithm made the skip lists circular, meaning that rather than the list having
 dynamic origin. Ultimately the goal is to choose a new, semi randomly chosen 
 origin after every function call, loopup(), insert(), or delete(), is made. This 
 makes it so no matter how many trials or repetitions of the same value an attacker 
-attempted he or she could never guess where the origin was. In the algorithm this is accomplished 
-by adding a few variables to the node class such as "skipped" and "index" which are maintained, 
-in a timely fashion, throughout the function calls. First a node is randomly selected from 
-all nodes, then using a calculation with the "skipped" and "index" variables from the 
-randomly selected node a new origin node is selected. This calculation is quite in depth 
-and can go as far as to change the entire height of the tree during when performed. 
+attempted he or she could never guess where the origin was.
 
 %Conclusion
 
@@ -117,7 +112,6 @@ for those operations here.
 \end{algorithm}
 
 
-
 \begin{algorithm}
 \caption{TUFL Delete}
 \textbf{Input:} element to delete v
@@ -150,5 +144,6 @@ for those operations here.
 \end{thebibliography}
 
 \end{document}
+
 
 
