@@ -13,68 +13,47 @@
 
 %Intro
 
-%Description
-
-In most modern networks their is a stable, generally deterministic, data
-structure in place to handle requests. By definition, these
-deterministic systems are very predictable. Unfortunately, because of their
-predictability, they can be abused. Users who understand the nature of 
-the network can overload the system with a series of time consuming
-requests, which eventually bog down the network. These denial-of-service
-(D.O.S.) attacks can occur for a variety of reasons ranging from 
-breaching security to gaining an advantage in competitive gaming. In 
-general, D.O.S. attacks rely on knowing how the network will respond to 
-every request. In theory, if an adversary could not predict a network's 
-response, then they could not mount a D.O.S. attack on the network. 
-Knowing this, we are motivated to 
-create a data structure that has unpredictable timing 
-for any given input, while still performing at a near optimal speed. 
-Such a data structure must be able to perform the same operations as 
+	In most modern networks their is a stable, generally deterministic, data
+structure in place to handle requests, which is, by definition, very predictable. As with many systems, this was designed with usability, rather than security, in mind. However, users with malicious intent, such as those trying to gain an advantage in online gaming or those wanting breach security for other reasons, have shown that this predictability is also a vulnerability. They use the predictability of the data structure to send overwhelming requests to the network in attacks known as denial-of-service, or D.O.S. attacks. If this predictability is taken away and the ability to know how a network will respond to every request is eliminated, a D.O.S. attack would be difficult or impossible to mount. This is where our particular algorithm comes in. The purpose of the algorithm is to create a data structure that has unpredictable time for any input, while still performing at near optimal speed. Such a data structure must be able to perform the same operations as 
 the original system, while also non-deterministically, i.e. randomly, 
 altering itself. This new system should be able to resist all timing-
-dependant attacks,
+dependent attacks,
 even from attackers who know the algorithm and the previous i/o values used.
 In their paper, Darrell Bethea and Michael K. Reiter discuss a data
 structure for set operations with these desirable characteristics\cite{Bethea09}.
 
-The problem of creating a data structure with unpredictable timing has been 
+%Description
+
+	The problem of creating a data structure with unpredictable timing has been 
 attempted previously and in general there are two types of structures.
-There are structures who's goal is to make the worst case unpredictable and 
-those who's goal is to make the worst case the least detrimental. Both types 
-have their limitations and can still be abused by adversary who are smart enough.
-A truly timing unpredictable algorithm must seemingly change its internal 
-structure often, if not every iteration, so that it can not be learned no 
-matter the amount of information an adversary can glean about it. 
+There are structures whose goal is to make the worst case unpredictable and 
+those whose goal is to make the worst case the least detrimental. Both types 
+have their limitations and can still be abused by a cleaver enough foe.
+A algorithm creating truly unpredictable timing must change its internal 
+structure often, if not every iteration, so that its timing cannot be predicted, particularly based upon previous iterations. 
 To accomplish these goals this algorithm uses a unique implementation of skip 
 lists along with a dynamic origin to create a data structure with unpredictable timing.
 
- At the core of this algorithm are skip lists, which are a specific type of linked list. 
-Skip lists are a series of linked lists L0 through Lm, where m is not constant meaning
-the number of linked lists can change depending on the input. The base list L0 contains
-every value entered into the set and L1 will contain half the values of L0 and so on until 
-Lm only contains a single value. What's important about these lists is that for any
-list Lk every value on list Lk is also on list Lk-1. This fact along with the lists
-being sorted makes traversing through the lists extremely efficient. To traverse the 
-lists we start at list Lm and move across our values until the next value is greater 
-than our search value. Then we go down a list to list Lm-1 and search that tree starting 
-at the value we stopped with on tree Lm. 
+	At the core of this algorithm are skip lists, which are specialized linked lists. 
+Skip lists are a series of linked lists $L_{0}$ through $L_{m}$, where m is not constant, meaning the number of linked lists can change depending on the input. The base list $L_{0}$ contains every value entered into the set, $L_{1}$ will contain half the values of $L_{0}$, and so on until $L_{m}$ only contains a single value. What's important about these lists is that for any list $L_{k}$ every value on list $L_{k}$ is also on list $L_{k-1}$. This fact, along with the lists being sorted, makes traversing through the lists extremely efficient. To traverse the 
+lists we start at list $L_{m}$ and move across our values until the next value is greater 
+than our search value. Then we go down a list to list $L_{m-1}$ and search that tree starting 
+at the value we stopped with on tree $L_{m}$. 
 
 	The next step of the algorithm is to take the normal implementation of skip 
 lists and alter it slightly. In the initial implementation of skip lists if you
-get to the greatest value without having found your search value then it must not 
+get to the greatest value without having found your search value, then your search value must not 
 be in the list. This method assumes that we start at with the smallest value in 
-the lists and move until we the largest but this is predictable. This algorithm 
-needs to be able to start at any point, or origin, and check all values in the 
-lists regardless of if they are larger or smaller. To do this the creators of this 
-algorithm made the skip lists circular, meaning that the largest value of the link 
-lists points next to the smallest value in the lists. Now when traversing the tree 
-we only stop when we have passed the specified origin a second time.
+the lists and move to the largest but this is predictable. This algorithm 
+needs to be able to start at any point, including the origin, and check all values in the 
+lists regardless of whether they are larger or smaller than the starting value. To do this the creators of this 
+algorithm made the skip lists circular, meaning that rather than the list having a specific head or tail the largest value points to the smallest value. Only when traversing past the starting point a second time do we stop.
   
-	The last critical step to making this algorithm truly timing unpredictable is a 
-dynamic origin. Ultimately the goal is to choose to have a new semi randomly chosen 
-origin after every function call, loopup(), insert(), or delete(), is made. This would 
-make it so no matter how many trials or repetitions of the same values an adversary 
-attempted he could never guess where the origin was. In this algorithm this is accomplished 
+	The last critical step to making this algorithm truly timing unpredictable is giving it a 
+dynamic origin. Ultimately the goal is to choose a new, semi randomly chosen 
+origin after every function call, loopup(), insert(), or delete(), is made. This 
+makes it so no matter how many trials or repetitions of the same value an attacker 
+attempted he or she could never guess where the origin was. In the algorithm this is accomplished 
 by adding a few variables to the node class such as "skipped" and "index" which are maintained, 
 in a timely fashion, throughout the function calls. First a node is randomly selected from 
 all nodes, then using a calculation with the "skipped" and "index" variables from the 
@@ -82,6 +61,8 @@ randomly selected node a new origin node is selected. This calculation is quite 
 and can go as far as to change the entire height of the tree during when performed. 
 
 %Conclusion
+
+	To summarize, predictability in request handling, although an efficient solution, makes the network vulnerable to certain attacks. In an effort to prevent such attacks, this algorithm creates a data structure with unpredictable timing which eliminates the effectiveness of D.O.S. attacks while maintaining an optimal speed and original functionality.
 
 %Algorithm
 
@@ -169,4 +150,5 @@ for those operations here.
 \end{thebibliography}
 
 \end{document}
+
 
