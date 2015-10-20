@@ -99,7 +99,7 @@ for those operations here.
 \State $level \gets head.height$
 \State $done \gets false$
 \While{!done}
-	\If{cur.level.next \textless \ v \ or \ v\  \textless\  head\  \textless\  cur.level.next}
+	\If{cur.next \textless \ v \ or \ v\  \textless\  head\  \textless\  cur.next}
 		\State $cur \gets cur.next$
 	\ElsIf{cur.next = v}
 		\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{head}
