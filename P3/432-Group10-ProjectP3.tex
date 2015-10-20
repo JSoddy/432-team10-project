@@ -85,29 +85,74 @@ and can go as far as to change the entire height of the tree during when perform
 
 %Algorithm
 
+The set ADT supports three basic operations, lookup, insert, and delete. We provide pseudocode
+for those operations here.
+
 \begin{algorithm}
-\caption{AlgorithmName}
-\textbf{Input:} Inputs
-\textbf{Output:} Outputs
+\caption{TUFL-LOOKUP}
+\textbf{Input:} search element v
+
+\textbf{Output:} v if v is found, null otherwise
 
 \begin{algorithmic}[1]
-\State $A \gets intarray$
-\State $V \gets intarray$
-\For{i = 1 to v}
-	\For{j = 1 to n}
-		\If{D[j] = i}
-			\State $A[i-1] \gets 1$
-			\State $V[i-1] \gets D[j]$
-		\ElsIf{D[j] \textless i}
-			\If{A[i-D[j]-1]+1 \textless A[i-1]}
-			\State $A[i-1] \gets A[i-D[j]-1]+1$
-			\State $V[i-1] \gets D[j]$
-			\EndIf
-		\EndIf
-	\EndFor
-\EndFor
+\State $cur \gets head$
+\State $level \gets head.height$
+\State $done \gets false$
+\While{!done}
+	\If{cur.level.next \textless \ v \ or \ v\  \textless\  head\  \textless\  cur.level.next}
+		\State $cur \gets cur.next$
+	\ElsIf{cur.next = v}
+		\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{head}
+		\State \Return v
+	\ElsIf{level \textgreater\ 1}
+		\State $level \gets level-1$
+	\Else
+		\State $done \gets true$
+	\EndIf
+\EndWhile
+\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{head}
+\State \Return null
+\end{algorithmic}
+\end{algorithm}
 
-\Return A[max]
+\begin{algorithm}
+\caption{TUFL-INSERT}
+\textbf{Input:} new element v
+
+\textbf{Output:} True if inserted, false if exists
+
+\begin{algorithmic}[1]
+\State $height \gets$\ \Call{CHOOSE-RANDOM-HEIGHT}{}
+\State $location \gets$\ \Call{FIND-INSERT-LOCATION}{v}
+\If{v = location}
+	\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{height}
+	\State\Return false
+\Else
+\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{}
+\State\Call{ADD-ELEMENT}{location, v, height}
+\State\Return True
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}
+\caption{TUFL Delete}
+\textbf{Input:} element to delete v
+
+\textbf{Output:} true if v was removed, false if it did not exist
+
+\begin{algorithmic}[1]
+\State $location \gets$\ \Call{FIND-INSERT-LOCATION}{v}
+\If{v = location}
+	\State \Call{DELETE-ELEMENT}{location}
+	\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{}
+	\State \Return True
+\Else
+	\State $head \gets$\ \Call{CHOOSE-NEW-HEAD}{}
+	\State \Return False
+\EndIf
 \end{algorithmic}
 \end{algorithm}
 
