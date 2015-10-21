@@ -1,5 +1,5 @@
-.syntex.gz
-.aux
-.pdf
-.log
-~
+*.syntex.gz
+*.aux
+*.pdf
+*.log
+~*
