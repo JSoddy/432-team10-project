@@ -38,13 +38,17 @@ making use of this information requires wading through material such as:
 
 It is our intention to present the details of the algorithm in such a way that
 it is easily understood by anyone with a basic grasp of computing principles,
-or even a motivated layman.
+or even a motivated layperson.
 
 
 \section{Discussion}
-Conclude with a discussion.  Things that you might want to consider to put in 
-the discussion (or maybe in their own sections) include: What are the biggest 
-challenges that you will face for the remainder of this project?  
+
+As the paper doesn't provide any comparison of performance of the proposed algorithm, readers may not have an idea about how much improvement introduced by this algorithm over some previous ones. Our first focus is on the performance comparison of the non-circular skip list based algorithm and the circular skip list based algorithm which is the proposed one in the paper. It's natural to compare two algorithms' safety performance which is the central issue in the paper. According to the paper, an adversary's attempts are basically based on probability calculation which may produce some hints at most expensive operations in the system. Using same data structure and invocations, we can simulate enough number of operations on the two algorithms in order to create two time distributions. Safety performance comparison can therefore be easily performed thanks to the fact that distributions can tell how much information revealed over a certain number of operations. For example, if a distribution is close to a uniform one, the adversary does not have a bigger chance to have a  better guess of which invocation is expensive. Along with the performance comparison, we may also perform running time comparison, because weighing pros and cons and finding a balance between them is a central part of any practical implementation of a new technique. Regarding the the above comparisons, we may use Fisher's information formula and running time as numerical summaries of the two most important aspects of algorithms than can be applied in the same scenario. Therefore it's possible to create  a cost function used to balance the pros and cons in catering to customers' demands. 
+
+However, we may further our study of the algorithm by testing it on different data structures to see if serves  consistently well. But the challenging part of this testing would be how to define and choose different data structures as there are infinitely many different data structures. Some tentative structures may be the ones people in this area usually use for testing. Or in the worst case, randomly different data sets  may put on the algorithm to see if their distributions of times are similar. On the other hand, data size of different sizes will be tested to give us an idea of its asymptotic performance. 
+
+If we are luck, we may be able to see some flaws or inconsistency in the algorithm after we run some simulations. Then we can discuss what was going on in the computation and if there's anything different we can do about it.
+
 
 \bibliographystyle{plain}
 \bibliography{bibfilename} 
@@ -58,6 +62,18 @@ the main body of your paper).
 
 The following are a list of tasks that we need to accomplish in order to 
 complete our project:
+
+1. Program the algorithms in comparison and run some simulations.
+
+2.Create the distributions of time to visualize their performances.
+
+3.Run different date sets on the proposed algorithm and visualize the performance.
+
+4.Make videos.
+
+5.Discuss issues seen and possible solutions.
+
+6. Formalize the project.
 
 \paragraph{Structure the video.} We need to plan a detailed outline of our 
 video.  We will meet together to do this.
@@ -76,13 +92,22 @@ The following table gives the timeline of how we plan to accomplish these tasks:
   Date & Who? & Short Description \\
   \hline
   \hline
-  10/30 & All & Structure the video. \\
+  11/07 & All & programming \\
   \hline
-  10/31 & Joe S. & Decide materials needed. \\
+  11/11 & All & simulation \\
+  
   \hline
-  \ldots & \ldots & \ldots \\
+  11/14 & All & performance comparison \\
+  
   \hline
-  11/29 & All & Final review of video. \\
+  11/16 & All & discussion of issues \\
+  
+  \hline
+  11/21 & All & video and more improvement if possible \\
+  
+ 
+  \hline
+  11/28 & All & Final fixing \\
   \hline
 \end{tabular}
 \end{table}
