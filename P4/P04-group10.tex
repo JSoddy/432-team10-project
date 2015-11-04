@@ -14,7 +14,13 @@
 
 \maketitle
 
-
+Protection from malicious attackers is easily understood as a general motivation
+for creating data structures with unpredictable timing. More difficult to understand,
+however, are the precise ways in which such structures are able to prevent adversaries
+from exploiting a system. Our intention is to clearly illustrate, through clear,
+high level descriptions and illustrated examples, precisely the way in which attacks
+can compromise standard systems, and how the protection offered by randomized
+data structures works.
 
 \section{Motivation}
 What is the problem that this algorithm is trying to solve (note: you may want 
@@ -23,10 +29,17 @@ to borrow from your P-2 write-up).
 \section{Algorithm}
 Brief description of the main points of the algorithm.
 
-\section{Analysis}
-Optional: you are welcome to provide a brief proof of correctness or a 
-running time analysis of the algorithm.  The difficulty of doing this will, of 
-ocurse, depend on your algorithm.
+\section{Analysis Problems}
+These data structures have been analyzed, and details of their suitability and
+efficiency have been given in the Bethea/Reiter paper\cite{Bethea09}. However,
+making use of this information requires wading through material such as:
+
+% Insert crazy equation here.
+
+It is our intention to present the details of the algorithm in such a way that
+it is easily understood by anyone with a basic grasp of computing principles,
+or even a motivated layman.
+
 
 \section{Discussion}
 Conclude with a discussion.  Things that you might want to consider to put in 
@@ -37,6 +50,7 @@ challenges that you will face for the remainder of this project?
 \bibliography{bibfilename} 
 
 \newpage
+\onecolumn
 \appendix
 \section{Timeline}
 (NOTE: it is good form to have a reference to this bibliography somewhere in 
@@ -72,4 +86,17 @@ The following table gives the timeline of how we plan to accomplish these tasks:
   \hline
 \end{tabular}
 \end{table}
+
+\pagebreak
+
+\begin{thebibliography}{9}
+	
+\bibitem{Bethea09}
+	Bethea, Darrell, and Michael K. Reiter,
+	\emph{Data Structures with Unpredictable Timing}
+	ESORICS,
+	2009.
+	
+\end{thebibliography}
+
 \end{document}
