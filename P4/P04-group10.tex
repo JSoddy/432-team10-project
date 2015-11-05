@@ -25,8 +25,7 @@ What is the problem that this algorithm is trying to solve (note: you may want
 to borrow from your P-2 write-up).
 
 \section{Algorithm}
-Brief description of the main points of the algorithm.
-
+ At the core of this algorithm are skip lists, which are a specific type of linked list. This algorithm uses a special implementation called circular skip list so that there is truly no beginning nor end to the list. Using this data structure the algorithm chooses an "origin" at random that will serve as the starting point for insertions, deletions, and searches of the lists. A starting origin is chosen at random upon initialization of the circular skip list, then for every operation performed a new origin is chosen. The choosing of a new origin also causes a restructuring of the skip lists and these two facts in combination result in the timing unpredictably of the algorithm. After every call an adversary makes the skip lists alter themselves making assuming anything about the nature of the lists extremely difficult. 
 \section{Analysis Problems}
 These data structures have been analyzed, and details of their suitability and
 efficiency have been given in the Bethea/Reiter paper\cite{Bethea09}. However,
