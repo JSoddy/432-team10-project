@@ -1,9 +1,7 @@
 \documentclass[11pt,twocolumn]{article}
 \usepackage[margin=1in]{geometry}
 
-\usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
+\usepackage{amsmath}
 
 %opening
 \title{Motivating Data Structures With Unpredictable Timing}
@@ -17,7 +15,7 @@
 Protection from malicious attackers is easily understood as a general motivation
 for creating data structures with unpredictable timing. More difficult to understand,
 however, are the precise ways in which such structures are able to prevent adversaries
-from exploiting a system. Our intention is to clearly illustrate, through clear,
+from exploiting a system. Our intention is to clearly illustrate, through
 high level descriptions and illustrated examples, precisely the way in which attacks
 can compromise standard systems, and how the protection offered by randomized
 data structures works.
@@ -32,9 +30,19 @@ Brief description of the main points of the algorithm.
 \section{Analysis Problems}
 These data structures have been analyzed, and details of their suitability and
 efficiency have been given in the Bethea/Reiter paper\cite{Bethea09}. However,
-making use of this information requires wading through material such as:
+making use of this information requires wading through fifteen pages of material such as:
 
-% Insert crazy equation here.
+\begin{minipage}{.5\textwidth}
+
+$$\sum_s\sum_{h=1}^\infty\sum_{j=1}^{n_{i+1}} \left( \begin{matrix}
+2^{-h}*Pr[S_i=s | I_i]*Pr[S_{i+1}=s' \\ \land dur(inv_{i+1})=d_{i+1}\  
+|\  S_i=s \\ \land H_{i+1}=h \land O_{i+1}=v_j] \end{matrix} \right)$$
+\hrule
+$$\sum_s\sum_{h=1}^\infty\sum_{j=1}^{n_{i+1}} 
+\left( \begin{matrix}2^{-h}*Pr[S_i=s | I_i]*
+\\Pr[ dur(inv_{i+1})=d_{i+1} \\ \  | \  S_i=s \land H_{i+1}=h \land O_{i+1}=v_j] \end{matrix} \right)$$
+
+\end{minipage}
 
 It is our intention to present the details of the algorithm in such a way that
 it is easily understood by anyone with a basic grasp of computing principles,
