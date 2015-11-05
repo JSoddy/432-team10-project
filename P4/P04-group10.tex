@@ -16,8 +16,8 @@ Protection from malicious attackers is easily understood as a general motivation
 for creating data structures with unpredictable timing. More difficult to understand,
 however, are the precise ways in which such structures are able to prevent adversaries
 from exploiting a system. Our intention is to clearly illustrate, through
-high level descriptions and visual examples, precisely the way in which attacks
-can compromise standard systems and how the protection offered by randomized
+high level descriptions and illustrated examples, precisely the way in which attacks
+can compromise standard systems, and how the protection offered by randomized
 data structures works.
 
 \section{Motivation}
@@ -46,18 +46,16 @@ $$\sum_s\sum_{h=1}^\infty\sum_{j=1}^{n_{i+1}}
 
 It is our intention to present the details of the algorithm in such a way that
 it is easily understood by anyone with a basic grasp of computing principles,
-as well as accessible to a motivated layperson.
+or even a motivated layperson.ds
 
 
 \section{Discussion}
 
-As the paper does not provide any comparison of performance of the proposed algorithm, readers may not have an idea of how much this improves upon previous algorithms. Our first focus will be a performance comparison of the non-circular skip list based algorithm to the circular skip list based algorithm which is proposed in the source paper. Comparing the safety performance of the two algorithms is natural as safety performance is the central issue in the source paper. In simple terms, an adversary's attempts to attack a system are based on probability calculation. Discovering patterns may produce some hints at most expensive operations in the system. Using same data structure and invocations, we can simulate a sufficient number of operations on the two algorithms in order to create two time distributions. Safety performance comparison can therefore be easily performed, thanks to the fact that distributions can show how much information is revealed over a certain number of operations. For example, if a distribution is close to uniform, the adversary does not have a better chance at guessing which invocation is expensive. 
+As the paper doesn't provide any comparison of performance of the proposed algorithm, readers may not have an idea about how much improvement introduced by this algorithm over some previous ones. Our first focus is on the performance comparison of the non-circular skip list based algorithm and the circular skip list based algorithm which is the proposed one in the paper. It's natural to compare two algorithms' safety performance which is the central issue in the paper. According to the paper, an adversary's attempts are basically based on probability calculation which may produce some hints at most expensive operations in the system. Using same data structure and invocations, we can simulate enough number of operations on the two algorithms in order to create two time distributions. Safety performance comparison can therefore be easily performed thanks to the fact that distributions can tell how much information revealed over a certain number of operations. For example, if a distribution is close to a uniform one, the adversary does not have a bigger chance to have a  better guess of which invocation is expensive. Along with the performance comparison, we may also perform running time comparison, because weighing pros and cons and finding a balance between them is a central part of any practical implementation of a new technique. Regarding the the above comparisons, we may use Fisher's information formula and running time as numerical summaries of the two most important aspects of algorithms than can be applied in the same scenario. Therefore it's possible to create  a cost function used to balance the pros and cons in catering to customers' demands. 
 
-Because it is important to find a balance between performance in terms of security and performance in terms of speed, we may also perform run time comparison. In such comparisons, we may use Fisher's information formula and run time as numerical summaries of the two most important aspects of algorithms than can be applied in the same scenario. This may make it possible to create a cost function which can be used to balance speed and security in catering to customers' demands. 
+However, we may further our study of the algorithm by testing it on different data structures to see if serves  consistently well. But the challenging part of this testing would be how to define and choose different data structures as there are infinitely many different data structures. Some tentative structures may be the ones people in this area usually use for testing. Or in the worst case, randomly different data sets  may put on the algorithm to see if their distributions of times are similar. On the other hand, data size of different sizes will be tested to give us an idea of its asymptotic performance. 
 
-Additionally, we may further our study of the algorithm by testing it on different data structures. The challenging part of this would be choosing suitable data structures, as there are infinitely many data structures. Some tentative structures may be the ones people in this area normally used for testing. Or in the worst case, randomly chosen data sets may put on the algorithm to see if their distribution times are similar. And finally, data of different sizes will be tested to give us an idea of its asymptotic performance. 
-
-It may be that we see some flaws or inconsistencies in the algorithm after we run some simulations. In that case, we can discuss what is going on in the computation and if there is anything different we can do.
+If we are luck, we may be able to see some flaws or inconsistency in the algorithm after we run some simulations. Then we can discuss what was going on in the computation and if there's anything different we can do about it.
 
 
 \bibliographystyle{plain}
@@ -75,13 +73,13 @@ complete our project:
 
 1. Program the algorithms in comparison and run some simulations.
 
-2. Create the distributions of time to visualize their performances.
+2.Create the distributions of time to visualize their performances.
 
-3. Run different data sets on the proposed algorithm and visualize the performance.
+3.Run different date sets on the proposed algorithm and visualize the performance.
 
-4. Make videos.
+4.Make videos.
 
-5. Discuss issues seen and possible solutions.
+5.Discuss issues seen and possible solutions.
 
 6. Formalize the project.
 
@@ -135,4 +133,3 @@ The following table gives the timeline of how we plan to accomplish these tasks:
 \end{thebibliography}
 
 \end{document}
-
