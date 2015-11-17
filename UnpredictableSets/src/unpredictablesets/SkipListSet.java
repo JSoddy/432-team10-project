@@ -30,8 +30,8 @@ public class SkipListSet {
   }
   
   // Private method to link two elements together.
-  //  Takes as arguments two elements, and the minimum height
-  //  from which they should be linked
+  //  Takes as arguments two elements, links them together as long as there is
+  //  not another element between them
   private void link(Element first, Element second){
     // We should make sure we have both elements at the same level
     while(first.getHeight() > second.getHeight()){
@@ -84,6 +84,7 @@ public class SkipListSet {
     return newElement;
   }
   
+  // !!! NYI
   // We need a private method to search through the skip list
   private Element find(int toFind){
     
@@ -100,6 +101,7 @@ public class SkipListSet {
     }
   }
   
+  // !!! NYI
   // We will need an add operation method
   public boolean addElement(){
     
@@ -129,6 +131,7 @@ public class SkipListSet {
   public void getContents(){
     
   }
+  
   
   // We will need a private class for our data elements
   private class Element {
