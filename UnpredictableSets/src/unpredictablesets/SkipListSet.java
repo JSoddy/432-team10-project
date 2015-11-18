@@ -35,7 +35,7 @@ public class SkipListSet {
   private void initialize() {
     Element headLevel = head;
     Element tailLevel = tail;
-    while (headLevel != null) {
+    while (headLevel != null && headLevel.getNext() == null) {
       headLevel.next = tailLevel;
       tailLevel.previous = headLevel;
       headLevel = headLevel.down;
