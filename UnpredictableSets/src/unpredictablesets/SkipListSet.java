@@ -16,17 +16,17 @@ public class SkipListSet {
   // We will need a size instance variable
   private int size;
   // Should we store the height?
-  private int height;
+  private int maxHeight;
   
   // We will need a constructor
   public SkipListSet(){
     // Probably we should create dummy head and tail elements?
-    head = createElement(height, NEG_INFTY);
-    tail = createElement(height, POS_INFTY);
+    head = createElement(maxHeight, NEG_INFTY);
+    tail = createElement(maxHeight, POS_INFTY);
     link(head, tail);
     // initialize size and height
     size = 0;
-    height = 2;
+    maxHeight = 2;
   }
   
   // Private method to link two elements together.
@@ -94,17 +94,20 @@ public class SkipListSet {
   
   // We will need a membership operation method
   public boolean isInSet(int toFind){
-    Element found = find(toFind);
-    if (found == null){
-      return false;
-    } else {
-      return true;
-    }
+    return  find(toFind) != null; // If find returns null, it's not there
   }
   
   // !!! NYI
   // We will need an add operation method
-  public boolean addElement(){
+  public boolean addElement(int toAdd){
+    if (isInSet(toAdd)){
+      return false;
+    } else {
+      Element newElement = createElement(chooseHeight(), toAdd);
+      Element current = head;
+      
+      
+    }
     
     return false; // !!! placeholder
   }
@@ -133,6 +136,16 @@ public class SkipListSet {
     
   }
   
+  // Method to randomly choose a height for a newly inserted node
+  private int chooseHeight(){
+    boolean heads = Math.random() < .50;
+    int height = 0;
+    while (heads && height < maxHeight){
+      height++;
+      heads = Math.random() < .50;
+    }
+    return height;
+  }
   
   // We will need a private class for our data elements
   private class Element {
