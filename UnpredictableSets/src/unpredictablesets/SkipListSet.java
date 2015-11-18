@@ -63,6 +63,7 @@ public class SkipListSet {
       next = toRemove.getNext();
       prev.setNext(next);
       next.setPrevious(prev);
+      toRemove = toRemove.getDown();
     }
   }
   
