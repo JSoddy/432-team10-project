@@ -88,7 +88,20 @@ public class SkipListSet {
   // !!! NYI
   // We need a private method to search through the skip list
   private Element find(int toFind){
-    
+      Element currentElement = head;
+      while(currentElement!=null){
+      if(currentElement.data == toFind){
+          return currentElement;
+      }
+      else if(currentElement.next.data>toFind){
+          if(currentElement.height == 0){
+              return null;
+          }
+          else{
+              currentElement = currentElement.down;}
+              }
+      else {currentElement = currentElement.next;}
+      }
     return null; // !!! placeholder
   }
   
