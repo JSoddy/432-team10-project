@@ -8,6 +8,7 @@ public class SkipListSet {
 
   private static final int POS_INFTY = Integer.MAX_VALUE;
   private static final int NEG_INFTY = Integer.MIN_VALUE;
+  private static final int DEFAULT_HEIGHT = 4;
 
   // We will need some kind of head element instance variable
   private Element head;
@@ -22,13 +23,15 @@ public class SkipListSet {
   public SkipListSet() {
     // initialize size and height
     size = 0;
-    maxHeight = 4;
+    maxHeight = DEFAULT_HEIGHT;
     // Probably we should create dummy head and tail elements?
     head = createElement(maxHeight, NEG_INFTY);
     tail = createElement(maxHeight, POS_INFTY);
     initialize();
   }
 
+  // Need to link head and tail together. The link method doesn't
+  //  work properly when all of the links are null
   private void initialize() {
     Element headLevel = head;
     Element tailLevel = tail;
@@ -119,6 +122,8 @@ public class SkipListSet {
     return null;
   }
 
+  // Just a method for printing out values connected to head and tail
+  //  to see if everything is working right
   public void diag() {
     System.out.println("HEAD:");
     Element current = head;
@@ -153,7 +158,6 @@ public class SkipListSet {
     return find(toFind) != null; // If find returns null, it's not there
   }
 
-  // !!! NYI
   // We will need an add operation method
   public boolean addElement(int toAdd) {
     if (isInSet(toAdd)) {
@@ -173,6 +177,7 @@ public class SkipListSet {
         }
       }
       size++;
+      adjustMaxHeight();
       return true;
     }
   }
@@ -185,8 +190,50 @@ public class SkipListSet {
     } else {
       unLink(found);
       size--;
+      adjustMaxHeight();
       return true;
     }
+  }
+  
+  // We need to periodically change the maximum height which is allowable
+  //  for the elements
+  private void adjustMaxHeight(){
+    int target = (int) (Math.log(size) / Math.log(2));
+    if (target < maxHeight){
+      if (target >= DEFAULT_HEIGHT){
+        maxHeight = target;
+      } else {
+        maxHeight = DEFAULT_HEIGHT;
+      }
+    } else if (target > maxHeight){
+      maxHeight = target;
+      // (resize head and tail) !!!!
+    }
+  }
+  
+  // Method to increase or decrease the size of a single element stack
+  //  so that it is consistent with our needs
+  private void resizeStack(Element toResize, int newHeight){
+    if (toResize == head || toResize == tail && toResize.height > newHeight){
+      // return;
+    } else if (toResize.height > newHeight) {
+      sizeDown(toResize, newHeight);
+    } else {
+      sizeUp(toResize, newHeight);
+    }
+  }
+  
+  // !!! NYI
+  // Just for increasing the size of a stack
+  private void sizeUp(Element toResize, int newHeight){
+    int currentHeight = toResize.height;
+    // !!!
+  }
+          
+  // !!! NYI
+  // Just for decreasing the size of a stack
+  private void sizeDown(Element toResize, int newHeight){
+    // !!!
   }
 
   // We need some size returning method

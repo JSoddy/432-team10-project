@@ -24,6 +24,10 @@ public class UnpredictableSets {
     
     testSet.removeElement(77);
     
+    for (int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE - 10000001; i += (int)(Math.random() * 100000)){
+      testSet.addElement(i);
+    }
+    
     System.out.println(testSet.isInSet(800));
     System.out.println(testSet.isInSet(3));
     System.out.println(testSet.isInSet(77));
