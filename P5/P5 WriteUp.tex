@@ -1,0 +1,75 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+
+%opening
+\title{CSCI 432 Group Project, Progress Report}
+\author{Group 10\\
+\small{James Corbett, Tao Huang, James Soddy, and Travis Wentz}}
+
+\begin{document}
+
+\maketitle
+
+We are working on our project to implement and explain the randomized
+set data structure set out by Bethea and Reiter in their 2009 
+paper\cite{Bethea09}. Our goal is to use visual information as well
+as real numbers collected from our implementations to show exactly
+how a set data structure can be exploited, and how the randomized
+implementation can protect from those attacks.
+
+So far our work has been focused on two parts of our project, skip list implementation and 
+generating data sets which we can use to test our program and illustrate the relative
+strengths and weaknesses of randomized implementations. Implementing skip lists involved 
+creating a data structure that is linked not only from left to right but also up and down. 
+It also required us to make unique add, search, and delete functions that are different from 
+normal link list functions. The data sets we have created will help us illustrate the 
+differences in how our algorithm will handle an attack versus a normal data structure. 
+They will also ensure that our data structure is not gimmicky in the sense that it only 
+performs well on specific data.
+
+Now that we have the normal skip list implementation complete, we are working on adapting our
+code for the randomized skip list set implementation. This will require us to make the skip 
+list circular and implement randomization of the starting node and 'height' of elements in our
+lists. Given our current skip list implementation, we don't foresee any difficulty in the adaptation. 
+Making the lists circular will involve connecting the starting and ending nodes and also modifying 
+our search, delete, and add functions so that they account for an unknown starting point. 
+To create the randomized starting node will simply involve inserting a new node as the head,
+and adjusting its height appropriately.
+
+Once we have our data structure complete we can move 
+to the video production of our project. Our video will begin by explaining the purpose of 
+our data structure and explaining the essentials of how it functions. Then we will show, 
+and explain, a series of illustrations that show the differences in performance of our 
+algorithm versus other common algorithms when under an attack. 
+
+The major difficulties we have faced throughout this project are the standard issues every 
+group runs into. First is finding a common time to meet and work on the project, everyone 
+has unique schedules that don't always coincide with each other. Secondly is finding
+parts of the project at which each member will excel. Each of us has a unique skill set 
+that might be better utilized performing one task over another. Last is getting the 
+tools we are using to work well for everyone in the group. While using version control has 
+undoubtedly helped keep everyone on the same page throughout our project, 
+setting up git-hub and learning latex has been taxing at times.
+
+Although we have fallen somewhat behind the schedule we laid out in our time line,
+we are not overly concerned about our ability to complete the project and have a quality
+presentation. We have thoroughly planned our project, and prepared the tools we will
+need to complete it. From here our main priority is finding suitable blocks of time that
+we will all be able to work together to complete the work that requires all of us.
+
+\pagebreak
+\onecolumn
+
+\begin{thebibliography}{9}
+	
+\bibitem{Bethea09}
+	Bethea, Darrell, and Michael K. Reiter,
+	\emph{Data Structures with Unpredictable Timing}
+	ESORICS,
+	2009.
+	
+\end{thebibliography}
+
+\end{document}
