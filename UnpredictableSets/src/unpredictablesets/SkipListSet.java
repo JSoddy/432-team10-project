@@ -1,5 +1,7 @@
 package unpredictablesets;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Group 10
@@ -125,6 +127,7 @@ public class SkipListSet {
   // Just a method for printing out values connected to head and tail
   //  to see if everything is working right
   public void diag() {
+    System.out.println("Height : " + maxHeight);
     System.out.println("HEAD:");
     Element current = head;
     Element next;
@@ -164,22 +167,25 @@ public class SkipListSet {
       return false;
     } else {
       Element newElement = createElement(chooseHeight(), toAdd);
+      insert(newElement);
+      size++;
+      adjustMaxHeight();
+      return true;
+    }
+  }
+  
+  public void insert(Element toInsert){
       Element current = head;
-
       while (current != null) {
-        if (current.next.data > toAdd) {
-          link(current, newElement);
+        if (current.next.data > toInsert.getData()) {
+          link(current, toInsert);
           current = current.down;
-        } else if (current.next.data == toAdd) {
+        } else if (current.next.data == toInsert.getData()) {
           current = current.down;
         } else {
           current = current.next;
         }
       }
-      size++;
-      adjustMaxHeight();
-      return true;
-    }
   }
 
   // We will need a remove operation method
@@ -198,55 +204,95 @@ public class SkipListSet {
   // We need to periodically change the maximum height which is allowable
   //  for the elements
   private void adjustMaxHeight(){
-    int target = (int) (Math.log(size) / Math.log(2));
-    if (target < maxHeight){
-      if (target >= DEFAULT_HEIGHT){
-        maxHeight = target;
+    // 31 - number of leading zeroes should give us the log of our size
+    int calculatedHeight = 31 - Integer.numberOfLeadingZeros(size + 1);
+    if (calculatedHeight < maxHeight){
+      if (calculatedHeight >= DEFAULT_HEIGHT){
+        maxHeight = calculatedHeight;
       } else {
         maxHeight = DEFAULT_HEIGHT;
       }
-    } else if (target > maxHeight){
-      maxHeight = target;
-      // (resize head and tail) !!!!
+    } else if (calculatedHeight > maxHeight){
+      maxHeight = calculatedHeight;
+      resizeHeadAndTail();
     }
+  }
+  
+  private void resizeHeadAndTail(){
+    while (head.getHeight() < maxHeight){
+      Element newHead = new Element(head.data, head.height+1, head);
+      Element newTail = new Element(tail.data, tail.height+1, tail);
+      head.setUp(newHead);
+      tail.setUp(newTail);
+      head = newHead;
+      tail = newTail;
+    }
+    initialize();
   }
   
   // Method to increase or decrease the size of a single element stack
   //  so that it is consistent with our needs
+  // Will not work for head and tail elements
   private void resizeStack(Element toResize, int newHeight){
-    if (toResize == head || toResize == tail && toResize.height > newHeight){
-      // return;
-    } else if (toResize.height > newHeight) {
+    if (toResize.height > newHeight) {
       sizeDown(toResize, newHeight);
     } else {
       sizeUp(toResize, newHeight);
     }
   }
   
-  // !!! NYI
   // Just for increasing the size of a stack
   private void sizeUp(Element toResize, int newHeight){
-    int currentHeight = toResize.height;
-    // !!!
+    while (toResize.getHeight() < newHeight){
+      Element newLevel = new Element(toResize.getData(), toResize.getHeight()+1, toResize);
+      toResize.setUp(newLevel);
+      toResize = newLevel;
+    }
+    insert(toResize);
   }
-          
-  // !!! NYI
+  
   // Just for decreasing the size of a stack
   private void sizeDown(Element toResize, int newHeight){
-    // !!!
+    unLink(toResize);
+    while (toResize.getHeight() > newHeight){
+      toResize = toResize.getDown();
+    }
+    toResize.setUp(null);
+    insert(toResize);
   }
 
   // We need some size returning method
-  public int size() {
+  public int getSize() {
     return size;
   }
 
-  // !!! NYI
   // We will need a method that will return the contents of the set, and
   //  do height re-adjustments in the process
   //  What should this return? An array list? !!!
-  public void getContents() {
-
+  public ArrayList<Integer> getContents() {
+    ArrayList<Integer> list = new ArrayList();
+    Element current = head;
+    while(current.down != null){
+      current = current.down;
+    }
+    current = current.next;
+    int position = 1;
+    while (current.next != null){
+      list.add(current.data);
+      updateSize(current, position);
+      current = current.next;
+      position++;
+    }
+    return list;
+  }
+  
+  private void updateSize(Element toAdjust, int position){
+    while(toAdjust.getUp() != null){
+      toAdjust = toAdjust.getUp();
+    }
+    // number of trailing zeros should give us the number of times the
+    //  position can be divided by 2 before the number becomes odd
+    resizeStack(toAdjust, Integer.numberOfTrailingZeros(position));
   }
 
   // Method to randomly choose a height for a newly inserted node

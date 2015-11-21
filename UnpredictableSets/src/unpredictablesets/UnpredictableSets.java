@@ -20,11 +20,12 @@ public class UnpredictableSets {
     testSet.addElement(999);
     testSet.addElement(77);
     
+    System.out.println(testSet.getContents());
     testSet.diag();
     
     testSet.removeElement(77);
     
-    for (int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE - 10000001; i += (int)(Math.random() * 100000)){
+    for (int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE - 10000001; i += (int)(Math.random() * 1000)){
       testSet.addElement(i);
     }
     
@@ -34,7 +35,7 @@ public class UnpredictableSets {
     
     testSet.removeElement(3);
     System.out.println(testSet.isInSet(3));
-    
+    System.out.println(testSet.getContents().size());
     testSet.diag();
   }
   
