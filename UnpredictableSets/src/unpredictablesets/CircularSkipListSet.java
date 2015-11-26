@@ -14,23 +14,19 @@ public class CircularSkipListSet {
 
   // We will need some kind of head element instance variable
   private Element head;
-  // I guess a tail element wouldn't hurt.
-  private Element tail;
   // We will need a size instance variable
   private int size;
   // Should we store the height?
   private int maxHeight;
 
-  // !!! Not yet updated
+  // Updated for circular -- not yet tested
   // We will need a constructor
   public CircularSkipListSet() {
     // initialize size and height
     size = 0;
     maxHeight = DEFAULT_HEIGHT;
     // Probably we should create dummy head and tail elements?
-    head = createElement(maxHeight, NEG_INFTY);
-    tail = createElement(maxHeight, POS_INFTY);
-    initialize();
+    head = null;
   }
 
   // Updated for circular
@@ -60,7 +56,8 @@ public class CircularSkipListSet {
 
     // Now link in our new element until we've gotten something else in the way
     Element third = first.getNext();
-    while (third != null && third.getData() > second.getData()) {
+    while (third != null && (third.getData() > second.getData()
+                        || third.getData() < first.getData())) {
       first.setNext(second);
       second.setNext(third);
       third.setPrevious(second);
@@ -116,15 +113,22 @@ public class CircularSkipListSet {
       if (currentElement.data == toFind) {
         return currentElement;
       } else if (currentElement.next == currentElement 
+              // Spaces are separating the separate logical blocks
               || (currentElement.data < toFind 
               && (currentElement.next.data > toFind
-              || currentElement.next.data < currentElement.data))) {
+              || currentElement.next.data < currentElement.data))
+              // Again, Just separating a part of this statement for clarity
+              || (currentElement.data > toFind
+              && currentElement.next.data > toFind
+              && currentElement.next.data < currentElement.data)) {
         if (currentElement.height == 0) {
           return null;
         } else {
           currentElement = currentElement.down;
         }
       } else {
+        System.out.println("Is this the place?");
+        System.out.println("Data = " + currentElement.data);
         currentElement = currentElement.next;
       }
     }
@@ -135,8 +139,13 @@ public class CircularSkipListSet {
   // Just a method for printing out values connected to head and tail
   //  to see if everything is working right
   public void diag() {
+    if (size == 0){
+      System.out.println("Height: " + maxHeight);
+      System.out.println("Empty!");
+      return;
+    }
     System.out.println("Height : " + maxHeight);
-    System.out.println("HEAD:");
+    System.out.println("Size: " + size);
     Element current = head;
     while (current != null) {
       System.out.println("Current: " + current.data);
@@ -158,19 +167,24 @@ public class CircularSkipListSet {
   // !!! Not yet updated -- Probably fine without update
   // We will need a membership operation method
   public boolean isInSet(int toFind) {
+    System.out.println("Trying to find " + toFind);
     return find(toFind) != null; // If find returns null, it's not there
   }
 
   // Updated for circular -- Not yet tested
   // We will need an add operation method
   public boolean addElement(int toAdd) {
+    System.out.println("Trying to add " + toAdd);
     if (isInSet(toAdd)) {
       return false;
     } else {
-      Element newElement = createElement(chooseHeight(), toAdd);
+      System.out.println("Did we make it here?");
       if (size == 0){
-          head = newElement;
+        Element newElement = createElement(maxHeight, toAdd);
+        head = newElement;
+        initialize();
       } else {
+        Element newElement = createElement(chooseHeight(), toAdd);
         insert(newElement);
       }
       size++;
@@ -181,7 +195,7 @@ public class CircularSkipListSet {
   
   // Updated for circular -- Maybe working?
   // Method to place an element in its proper location in the list
-  public void insert(Element toInsert){
+  private void insert(Element toInsert){
       Element current = head;
       while (current != null) {
         if (current.next == current ||
@@ -234,6 +248,7 @@ public class CircularSkipListSet {
     }
   }
   
+  /*
   // !!! Not yet updated -- I think we won't need this method here. Our resize
   //  method will have to consider these cases
   private void resizeHeadAndTail(){
@@ -247,6 +262,7 @@ public class CircularSkipListSet {
     }
     initialize();
   }
+  */
   
   // !!! Not yet updated
   // Method to increase or decrease the size of a single element stack
@@ -283,34 +299,55 @@ public class CircularSkipListSet {
     insert(toResize);
   }
 
-  // !!! Not yet updated
+  // !!! Not yet updated -- Should not need update
   // We need some size returning method
   public int getSize() {
     return size;
   }
 
-  // !!! Not yet updated
+  // Updated for circular
   // We will need a method that will return the contents of the set, and
   //  do height re-adjustments in the process
   //  What should this return? An array list? !!!
   public ArrayList<Integer> getContents() {
+    System.out.println("Getting contents!\n");
     ArrayList<Integer> list = new ArrayList();
+    if (head == null){
+      return list;
+    }
     Element current = head;
+    // We will travel along the longest paths we have to find the lowest
+    //  numbered element
+    System.out.print(current.data + " ");
     while(current.down != null){
-      current = current.down;
+      if (current.next.data > current.data){
+        current = current.next;
+        System.out.print(current.data + " ");
+      } else {
+        current = current.down;
+        System.out.println();
+        System.out.print(current.data + " ");
+      }
     }
-    current = current.next;
-    int position = 1;
-    while (current.next != null){
-      list.add(current.data);
-      updateSize(current, position);
+    // Then we will move along the bottom until we are in position
+    while(current.next.data > current.data) {
       current = current.next;
-      position++;
     }
+    // Then start with the first element
+    current = current.next;
+    // Keep track of the data in our starting position, so we don't loop forever
+    int startPos = current.data;
+    // Just add to the list and then move on to the next
+    do{
+      list.add(current.data);
+      current = current.next;
+    } while (current.data != startPos);
+    System.out.println("\n");
     return list;
   }
   
-  // !!! Not yet updated
+  /*
+  // !!! Not yet updated -- We do not need this method for circular random
   private void updateSize(Element toAdjust, int position){
     while(toAdjust.getUp() != null){
       toAdjust = toAdjust.getUp();
@@ -319,8 +356,9 @@ public class CircularSkipListSet {
     //  position can be divided by 2 before the number becomes odd
     resizeStack(toAdjust, Integer.numberOfTrailingZeros(position));
   }
+  */
 
-  // !!! Not yet updated
+  // !!! Not yet updated -- Should not need updating
   // Method to randomly choose a height for a newly inserted node
   private int chooseHeight() {
     boolean heads = (Math.random() < 0.50);
@@ -332,7 +370,8 @@ public class CircularSkipListSet {
     return height;
   }
 
-  // !!! Not yet updated
+  // !!! Not yet updated -- May not need updating unless we have to add
+  //  skip counts and/or indices
   // We will need a private class for our data elements
   private class Element {
 
