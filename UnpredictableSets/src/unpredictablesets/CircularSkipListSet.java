@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author Group 10
  */
-public class CircularSkipListSet {
+public class CircularSkipListSet extends SkipListSet {
 
   private static final int POS_INFTY = Integer.MAX_VALUE;
   private static final int NEG_INFTY = Integer.MIN_VALUE;
@@ -41,7 +41,7 @@ public class CircularSkipListSet {
     }
   }
 
-  // !!! Not yet updated -- Maybe okay without changes
+  // Updated for circular - Maybe buggy -- Definitely buggy!!!!
   // Private method to link two elements together.
   //  Takes as arguments two elements, links them together as long as there is
   //  not another element between them
@@ -56,12 +56,22 @@ public class CircularSkipListSet {
 
     // Now link in our new element until we've gotten something else in the way
     Element third = first.getNext();
-    while (third != null && (third.getData() > second.getData()
-                        || third.getData() < first.getData())) {
-      first.setNext(second);
-      second.setNext(third);
-      third.setPrevious(second);
-      second.setPrevious(first);
+    while (first != null){
+      if (first.next == first 
+              // Spaces are separating the separate logical blocks
+              || (first.data < second.data 
+              && (third.data > second.data
+              || third.data < first.data))
+              // Again, Just separating a part of this statement for clarity
+              || (first.data > second.data
+              && third.data > second.data
+              && third.data < first.data)){
+        
+        first.setNext(second);
+        second.setNext(third);
+        third.setPrevious(second);
+        second.setPrevious(first);
+      }
       first = first.getDown();
       second = second.getDown();
       if (first != null) {
@@ -127,8 +137,6 @@ public class CircularSkipListSet {
           currentElement = currentElement.down;
         }
       } else {
-        System.out.println("Is this the place?");
-        System.out.println("Data = " + currentElement.data);
         currentElement = currentElement.next;
       }
     }
@@ -167,18 +175,15 @@ public class CircularSkipListSet {
   // !!! Not yet updated -- Probably fine without update
   // We will need a membership operation method
   public boolean isInSet(int toFind) {
-    System.out.println("Trying to find " + toFind);
     return find(toFind) != null; // If find returns null, it's not there
   }
 
   // Updated for circular -- Not yet tested
   // We will need an add operation method
   public boolean addElement(int toAdd) {
-    System.out.println("Trying to add " + toAdd);
     if (isInSet(toAdd)) {
       return false;
     } else {
-      System.out.println("Did we make it here?");
       if (size == 0){
         Element newElement = createElement(maxHeight, toAdd);
         head = newElement;
@@ -189,6 +194,7 @@ public class CircularSkipListSet {
       }
       size++;
       adjustMaxHeight();
+      resizeHead();
       return true;
     }
   }
@@ -196,12 +202,11 @@ public class CircularSkipListSet {
   // Updated for circular -- Maybe working?
   // Method to place an element in its proper location in the list
   private void insert(Element toInsert){
+       
       Element current = head;
       while (current != null) {
-        if (current.next == current ||
-           (current.data < toInsert.getData() && 
-           (current.next.data > toInsert.getData() || 
-            current.next.data < current.data))) {
+        if (current.next == current || (current.data < toInsert.data && (current.next.data > toInsert.data || current.next.data < current.data))
+                                    || (current.data > current.next.data && current.next.data > toInsert.data)) {
           link(current, toInsert);
           current = current.down;
         } else if (current.next.data == toInsert.getData()) {
@@ -209,6 +214,16 @@ public class CircularSkipListSet {
         } else {
           current = current.next;
         }
+      }
+      
+      // This should take care of cases where the new element is taller than any
+      //  other elements
+      while (toInsert != null){
+        if (toInsert.next == null){
+          toInsert.next = toInsert;
+          toInsert.previous = toInsert;
+        } 
+        toInsert = toInsert.down;
       }
   }
 
@@ -248,21 +263,16 @@ public class CircularSkipListSet {
     }
   }
   
-  /*
-  // !!! Not yet updated -- I think we won't need this method here. Our resize
+  //  Updated for circular
   //  method will have to consider these cases
-  private void resizeHeadAndTail(){
+  private void resizeHead(){
     while (head.getHeight() < maxHeight){
       Element newHead = new Element(head.data, head.height+1, head);
-      Element newTail = new Element(tail.data, tail.height+1, tail);
       head.setUp(newHead);
-      tail.setUp(newTail);
       head = newHead;
-      tail = newTail;
     }
     initialize();
   }
-  */
   
   // !!! Not yet updated
   // Method to increase or decrease the size of a single element stack
@@ -291,12 +301,12 @@ public class CircularSkipListSet {
   //  be rewritten anyway
   // Just for decreasing the size of a stack
   private void sizeDown(Element toResize, int newHeight){
-    unLink(toResize);
     while (toResize.getHeight() > newHeight){
+      toResize.next.setPrevious(toResize.previous);
+      toResize.previous.setNext(toResize.next);
       toResize = toResize.getDown();
     }
     toResize.setUp(null);
-    insert(toResize);
   }
 
   // !!! Not yet updated -- Should not need update
@@ -310,7 +320,6 @@ public class CircularSkipListSet {
   //  do height re-adjustments in the process
   //  What should this return? An array list? !!!
   public ArrayList<Integer> getContents() {
-    System.out.println("Getting contents!\n");
     ArrayList<Integer> list = new ArrayList();
     if (head == null){
       return list;
@@ -318,15 +327,11 @@ public class CircularSkipListSet {
     Element current = head;
     // We will travel along the longest paths we have to find the lowest
     //  numbered element
-    System.out.print(current.data + " ");
     while(current.down != null){
       if (current.next.data > current.data){
         current = current.next;
-        System.out.print(current.data + " ");
       } else {
         current = current.down;
-        System.out.println();
-        System.out.print(current.data + " ");
       }
     }
     // Then we will move along the bottom until we are in position
@@ -342,7 +347,6 @@ public class CircularSkipListSet {
       list.add(current.data);
       current = current.next;
     } while (current.data != startPos);
-    System.out.println("\n");
     return list;
   }
   
