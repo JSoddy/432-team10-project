@@ -241,24 +241,57 @@ public class SkipListSet {
     }
   }
   
+//  // Just for increasing the size of a stack
+//  private void sizeUp(Element toResize, int newHeight){
+//    while (toResize.getHeight() < newHeight){
+//      Element newLevel = new Element(toResize.getData(), toResize.getHeight()+1, toResize);
+//      toResize.setUp(newLevel);
+//      toResize = newLevel;
+//    }
+//    insert(toResize);
+//  }
+  
   // Just for increasing the size of a stack
   private void sizeUp(Element toResize, int newHeight){
+    Element prev = toResize.previous;
+    Element next = toResize.next;
     while (toResize.getHeight() < newHeight){
       Element newLevel = new Element(toResize.getData(), toResize.getHeight()+1, toResize);
       toResize.setUp(newLevel);
+      while (prev.up == null){
+        prev = prev.previous;
+      }
+      prev = prev.up;
+      while (next.up == null){
+        next = next.next;
+      }
+      next = next.up;
+      prev.setNext(newLevel);
+      newLevel.setNext(next);
+      next.setPrevious(newLevel);
+      newLevel.setPrevious(prev);
       toResize = newLevel;
     }
-    insert(toResize);
   }
   
+  /*
   // Just for decreasing the size of a stack
   private void sizeDown(Element toResize, int newHeight){
-    unLink(toResize);
     while (toResize.getHeight() > newHeight){
       toResize = toResize.getDown();
     }
     toResize.setUp(null);
     insert(toResize);
+  }
+  */
+  
+  private void sizeDown(Element toResize, int newHeight){
+    while (toResize.getHeight() > newHeight){
+      toResize.next.setPrevious(toResize.previous);
+      toResize.previous.setNext(toResize.next);
+      toResize = toResize.getDown();
+    }
+    toResize.setUp(null);
   }
 
   // We need some size returning method
