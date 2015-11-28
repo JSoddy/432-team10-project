@@ -10,7 +10,7 @@ public class CircularSkipListSet extends SkipListSet {
 
   private static final int POS_INFTY = Integer.MAX_VALUE;
   private static final int NEG_INFTY = Integer.MIN_VALUE;
-  private static final int DEFAULT_HEIGHT = 4;
+  private static final int DEFAULT_HEIGHT = 0;
 
   // We will need some kind of head element instance variable
   private Element head;
@@ -301,7 +301,7 @@ public class CircularSkipListSet extends SkipListSet {
       newHead();
     } while (head.getData() == toRemove);
     Element found = find(toRemove);
-    if (found == null) {
+    if (found.data != toRemove) {
       return false;
     } else {
       if (size == 1) {
@@ -340,6 +340,11 @@ public class CircularSkipListSet extends SkipListSet {
     }
     head = current;
     resizeStack(oldHead, chooseHeight());
+    // Then make sure nothing is taller than head. That can cause ugly problems.
+    do {
+        current.up = null;
+        current = current.next;
+    } while (current != head);
   }
 
   // Updated for circular -- Not yet tested
