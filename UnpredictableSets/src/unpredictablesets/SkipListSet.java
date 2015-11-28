@@ -155,6 +155,36 @@ public class SkipListSet {
       current = current.down;
     }
   }
+  
+  public void skipDiag() {
+    Element current = head;
+    Element currentLevel;
+    int[] data = new int[size];
+    int[] levels = new int[size];
+    while (current.down != null){
+        current = current.down;
+    }
+    for (int i = 0; i < data.length; i++){
+        current = current.next;
+        currentLevel = current;
+        while (currentLevel.up != null){
+            currentLevel = currentLevel.up;
+        }
+        data[i] = current.data;
+        levels[i] = currentLevel.height;
+    }
+    for (int i = maxHeight; i >= 0; i--){
+        System.out.print("HEAD ");
+        for (int j = 0; j < data.length; j++){
+            if (levels[j] < i){
+                System.out.printf(" --- ");
+            } else {
+                System.out.printf("%5d", data[j]);
+            }
+        }
+        System.out.println(" TAIL");
+    }
+  }
 
   // We will need a membership operation method
   public boolean isInSet(int toFind) {
