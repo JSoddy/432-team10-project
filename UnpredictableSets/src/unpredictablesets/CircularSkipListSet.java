@@ -37,11 +37,12 @@ public class CircularSkipListSet extends SkipListSet {
     while (headLevel != null && headLevel.getNext() == null) {
       headLevel.next = headLevel;
       headLevel.previous = headLevel;
+      headLevel.skipCount = size;
       headLevel = headLevel.down;
     }
   }
 
-  // Updated for circular - Maybe buggy -- Definitely buggy!!!!
+  // Updated for circular - Maybe buggy
   // Private method to link two elements together.
   //  Takes as arguments two elements, links them together as long as there is
   //  not another element between them
@@ -56,17 +57,16 @@ public class CircularSkipListSet extends SkipListSet {
 
     // Now link in our new element until we've gotten something else in the way
     Element third = first.getNext();
-    while (first != null){
-      if (first.next == first 
-              // Spaces are separating the separate logical blocks
-              || (first.data < second.data 
+    while (first != null) {
+      if (first.next == first
+              || // Spaces are separating the separate logical blocks
+              (first.data < second.data
               && (third.data > second.data
               || third.data < first.data))
-              // Again, Just separating a part of this statement for clarity
-              || (first.data > second.data
+              || // Again, Just separating a part of this statement for clarity
+              (first.data > second.data
               && third.data > second.data
-              && third.data < first.data)){
-        
+              && third.data < first.data)) {
         first.setNext(second);
         second.setNext(third);
         third.setPrevious(second);
@@ -85,14 +85,22 @@ public class CircularSkipListSet extends SkipListSet {
   // !!! Not yet updated -- Maybe okay without update
   // Private method to extract an element and repair the links around it
   private void unLink(Element toRemove) {
-    Element prev;
+    Element prev = null;
     Element next;
     while (toRemove != null) {
       prev = toRemove.getPrevious();
+      prev.setSkipCount(prev.getSkipCount() + toRemove.getSkipCount());
       next = toRemove.getNext();
       prev.setNext(next);
       next.setPrevious(prev);
       toRemove = toRemove.getDown();
+    }
+    while (prev != null) {
+      prev.skipCount--;
+      while (prev.up == null && prev != head) {
+        prev = prev.previous;
+      }
+      prev = prev.up;
     }
   }
 
@@ -115,16 +123,17 @@ public class CircularSkipListSet extends SkipListSet {
     return newElement;
   }
 
-  // Updated for circular. Maybe will work???
-  // We need a private method to search through the skip list
+  // Updated for circular - Needs testing
+  // Find returns either the element we are looking for, the last element
+  //  preceeding it, or null if the set is empty
   private Element find(int toFind) {
     Element currentElement = head;
     while (currentElement != null) {
       if (currentElement.data == toFind) {
         return currentElement;
-      } else if (currentElement.next == currentElement 
+      } else if (currentElement.next == currentElement
               // Spaces are separating the separate logical blocks
-              || (currentElement.data < toFind 
+              || (currentElement.data < toFind
               && (currentElement.next.data > toFind
               || currentElement.next.data < currentElement.data))
               // Again, Just separating a part of this statement for clarity
@@ -132,7 +141,7 @@ public class CircularSkipListSet extends SkipListSet {
               && currentElement.next.data > toFind
               && currentElement.next.data < currentElement.data)) {
         if (currentElement.height == 0) {
-          return null;
+          return currentElement;  // Element is not there, so return preceeding
         } else {
           currentElement = currentElement.down;
         }
@@ -140,14 +149,14 @@ public class CircularSkipListSet extends SkipListSet {
         currentElement = currentElement.next;
       }
     }
-    return null;
+    return null; // Error or empty set
   }
 
   // Updated for circular
   // Just a method for printing out values connected to head and tail
   //  to see if everything is working right
   public void diag() {
-    if (size == 0){
+    if (size == 0) {
       System.out.println("Height: " + maxHeight);
       System.out.println("Empty!");
       return;
@@ -163,80 +172,142 @@ public class CircularSkipListSet extends SkipListSet {
         System.out.println("Next = null");
       }
       if (current.previous != null) {
-        System.out.println("Previous: " + current.previous.data);       
+        System.out.println("Previous: " + current.previous.data);
       } else {
         System.out.println("Previous = null");
       }
       current = current.down;
     }
-    
+
+  }
+
+  public void skipDiag() {
+    Element currentLevel = head;
+    while (currentLevel != null) {
+      Element currentPos = currentLevel;
+      System.out.printf("%5d", currentPos.data);
+      do {
+        for (int i = 1; i < currentPos.skipCount; i++) {
+          System.out.print("  -  ");
+        }
+        currentPos = currentPos.next;
+        System.out.printf("%5d", currentPos.data);
+      } while (currentPos != currentLevel);
+      System.out.println();
+      currentLevel = currentLevel.down;
+    }
   }
 
   // !!! Not yet updated -- Probably fine without update
   // We will need a membership operation method
   public boolean isInSet(int toFind) {
-    return find(toFind) != null; // If find returns null, it's not there
+    Element found = find(toFind);
+    // Find returns either the element we are looking for, the last element
+    //  preceeding it, or null if the set is empty
+    newHead();
+    return found != null && found.getData() == toFind;
   }
 
   // Updated for circular -- Not yet tested
   // We will need an add operation method
   public boolean addElement(int toAdd) {
-    if (isInSet(toAdd)) {
-      return false;
+    if (size == 0) {
+      Element newElement = createElement(maxHeight, toAdd);
+      head = newElement;
+      size++;
+      initialize();
+      return true;
     } else {
-      if (size == 0){
-        Element newElement = createElement(maxHeight, toAdd);
-        head = newElement;
-        initialize();
+      Element prev = find(toAdd);
+      if (prev.data == toAdd) {
+        return false;
       } else {
         Element newElement = createElement(chooseHeight(), toAdd);
-        insert(newElement);
+        insert(newElement, prev);
+        size++;
+        adjustMaxHeight();
+        resizeHead();
+        newHead();
+        return true;
       }
-      size++;
-      adjustMaxHeight();
-      resizeHead();
-      return true;
     }
   }
-  
-  // Updated for circular -- Maybe working?
-  // Method to place an element in its proper location in the list
-  private void insert(Element toInsert){
+
+  /*
+   // Updated for circular -- Maybe working?
+   // Method to place an element in its proper location in the list
+   private void insert(Element toInsert, Element previous){
        
-      Element current = head;
-      while (current != null) {
-        if (current.next == current || (current.data < toInsert.data && (current.next.data > toInsert.data || current.next.data < current.data))
-                                    || (current.data > current.next.data && current.next.data > toInsert.data)) {
-          link(current, toInsert);
-          current = current.down;
-        } else if (current.next.data == toInsert.getData()) {
-          current = current.down;
-        } else {
-          current = current.next;
-        }
-      }
+   Element current = head;
+   while (current != null) {
+   if (current.next == current || (current.data < toInsert.data && (current.next.data > toInsert.data || current.next.data < current.data))
+   || (current.data > current.next.data && current.next.data > toInsert.data)) {
+   link(current, toInsert);
+   current = current.down;
+   } else if (current.next.data == toInsert.getData()) {
+   current = current.down;
+   } else {
+   current = current.next;
+   }
+   }
       
-      // This should take care of cases where the new element is taller than any
-      //  other elements
-      while (toInsert != null){
-        if (toInsert.next == null){
-          toInsert.next = toInsert;
-          toInsert.previous = toInsert;
-        } 
-        toInsert = toInsert.down;
+   // This should take care of cases where the new element is taller than any
+   //  other elements
+   while (toInsert != null){
+   if (toInsert.next == null){
+   toInsert.next = toInsert;
+   toInsert.previous = toInsert;
+   } 
+   toInsert = toInsert.down;
+   }
+   }
+   */
+  private void insert(Element toInsert, Element previous) {
+    // Get our new node to the bottom level
+    while (toInsert.down != null) {
+      toInsert = toInsert.down;
+    }
+    Element next = null;
+    int skipCounter = 0; // This keeps track of how many elents back from the
+    //  insertion point our previous is.
+    do {
+      next = previous.next;
+      previous.next = toInsert;
+      toInsert.next = next;
+      next.previous = toInsert;
+      toInsert.previous = previous;
+      toInsert.skipCount = previous.skipCount - skipCounter;
+      previous.skipCount = skipCounter + 1;
+      while (previous.up == null && previous != head) {
+        previous = previous.previous;
+        skipCounter += previous.skipCount;
       }
+      previous = previous.up;
+      toInsert = toInsert.up;
+    } while (toInsert != null);
+
+    while (previous != null) {
+      previous.skipCount++;
+      while (previous.up == null && previous != head) {
+        previous = previous.previous;
+      }
+      previous = previous.up;
+    }
   }
 
   // We will need a remove operation method - Updated for circular
   public boolean removeElement(int toRemove) {
+    do {
+      newHead();
+    } while (head.getData() == toRemove);
     Element found = find(toRemove);
     if (found == null) {
       return false;
     } else {
-      if (size == 1){
-          head = null;
-          size = 0;
-          return true;
+      if (size == 1) {
+        head = null;
+        size = 0;
+        return true;
       } else {
         unLink(found);
         size--;
@@ -245,15 +316,40 @@ public class CircularSkipListSet extends SkipListSet {
       }
     }
   }
-  
+
+  private void newHead() {
+    Element current = head;
+    int toSkip = (int) (Math.random() * size) + 1;
+    while (toSkip > 0) {
+      while (current.skipCount > toSkip) {
+        current = current.down;
+      }
+      toSkip = toSkip - current.skipCount;
+      current = current.next;
+    }
+    Element oldHead = head;
+    while (current.up != null) {
+      current = current.up;
+    }
+    if (current == head) {
+      return;
+    }
+    resizeStack(current, maxHeight);
+    while (current.up != null) {
+      current = current.up;
+    }
+    head = current;
+    resizeStack(oldHead, chooseHeight());
+  }
+
   // Updated for circular -- Not yet tested
   // We need to periodically change the maximum height which is allowable
   //  for the elements
-  private void adjustMaxHeight(){
+  private void adjustMaxHeight() {
     // 31 - number of leading zeroes should give us the log of our size
     int calculatedHeight = 31 - Integer.numberOfLeadingZeros(size + 1);
-    if (calculatedHeight < maxHeight){
-      if (calculatedHeight >= DEFAULT_HEIGHT){
+    if (calculatedHeight < maxHeight) {
+      if (calculatedHeight >= DEFAULT_HEIGHT) {
         maxHeight = calculatedHeight;
       } else {
         maxHeight = DEFAULT_HEIGHT;
@@ -262,49 +358,77 @@ public class CircularSkipListSet extends SkipListSet {
       maxHeight = calculatedHeight;
     }
   }
-  
+
   //  Updated for circular
   //  method will have to consider these cases
-  private void resizeHead(){
-    while (head.getHeight() < maxHeight){
-      Element newHead = new Element(head.data, head.height+1, head);
+  private void resizeHead() {
+    while (head.getHeight() < maxHeight) {
+      Element newHead = new Element(head.data, head.height + 1, head);
       head.setUp(newHead);
       head = newHead;
+      head.previous = head;
+      head.next = head;
+      head.skipCount = size;
     }
-    initialize();
   }
-  
-  // !!! Not yet updated
+  // !!! Not yet updated -- Does not need to be updated
   // Method to increase or decrease the size of a single element stack
   //  so that it is consistent with our needs
   // Will not work for head and tail elements
-  private void resizeStack(Element toResize, int newHeight){
+
+  private void resizeStack(Element toResize, int newHeight) {
     if (toResize.height > newHeight) {
       sizeDown(toResize, newHeight);
-    } else {
+    } else if (toResize.height < newHeight) {
       sizeUp(toResize, newHeight);
     }
   }
-  
+
   // !!! Not yet updated
   // Just for increasing the size of a stack
-  private void sizeUp(Element toResize, int newHeight){
-    while (toResize.getHeight() < newHeight){
-      Element newLevel = new Element(toResize.getData(), toResize.getHeight()+1, toResize);
+  private void sizeUp(Element toResize, int newHeight) {
+    while (toResize.up != null) {
+      toResize = toResize.up;
+    }
+    Element previous = toResize.getPrevious();
+    int skipped = previous.skipCount;
+
+    while (toResize.getHeight() < newHeight) {
+
+      Element newLevel = new Element(toResize.getData(),
+              toResize.getHeight() + 1, toResize);
       toResize.setUp(newLevel);
       toResize = newLevel;
+
+      while (previous.up == null) {
+        previous = previous.previous;
+        skipped += previous.skipCount;
+      }
+      previous = previous.up;
+
+      toResize.skipCount = previous.skipCount - skipped;
+      previous.skipCount = skipped;
+
+      toResize.next = previous.next;
+      previous.next = toResize;
+      toResize.previous = previous;
+      toResize.next.previous = toResize;
     }
-    insert(toResize);
   }
-  
-  // !!! Not yet updated -- Should work, but is very inefficient and should
-  //  be rewritten anyway
+
+  // !!! Updated, but buggy!
   // Just for decreasing the size of a stack
-  private void sizeDown(Element toResize, int newHeight){
-    while (toResize.getHeight() > newHeight){
-      toResize.next.setPrevious(toResize.previous);
-      toResize.previous.setNext(toResize.next);
+  private void sizeDown(Element toResize, int newHeight) {
+    Element previous = toResize.previous;
+    Element next = toResize.next;
+    while (toResize.getHeight() > newHeight) {
+      next.setPrevious(toResize.previous);
+      previous.setNext(toResize.next);
+      previous.setSkipCount(previous.skipCount
+              + toResize.skipCount);
       toResize = toResize.getDown();
+      previous = toResize.previous;
+      next = toResize.next;
     }
     toResize.setUp(null);
   }
@@ -321,21 +445,21 @@ public class CircularSkipListSet extends SkipListSet {
   //  What should this return? An array list? !!!
   public ArrayList<Integer> getContents() {
     ArrayList<Integer> list = new ArrayList();
-    if (head == null){
+    if (head == null) {
       return list;
     }
     Element current = head;
     // We will travel along the longest paths we have to find the lowest
     //  numbered element
-    while(current.down != null){
-      if (current.next.data > current.data){
+    while (current.down != null) {
+      if (current.next.data > current.data) {
         current = current.next;
       } else {
         current = current.down;
       }
     }
     // Then we will move along the bottom until we are in position
-    while(current.next.data > current.data) {
+    while (current.next.data > current.data) {
       current = current.next;
     }
     // Then start with the first element
@@ -343,24 +467,13 @@ public class CircularSkipListSet extends SkipListSet {
     // Keep track of the data in our starting position, so we don't loop forever
     int startPos = current.data;
     // Just add to the list and then move on to the next
-    do{
+    do {
       list.add(current.data);
       current = current.next;
     } while (current.data != startPos);
+    newHead();
     return list;
   }
-  
-  /*
-  // !!! Not yet updated -- We do not need this method for circular random
-  private void updateSize(Element toAdjust, int position){
-    while(toAdjust.getUp() != null){
-      toAdjust = toAdjust.getUp();
-    }
-    // number of trailing zeros should give us the number of times the
-    //  position can be divided by 2 before the number becomes odd
-    resizeStack(toAdjust, Integer.numberOfTrailingZeros(position));
-  }
-  */
 
   // !!! Not yet updated -- Should not need updating
   // Method to randomly choose a height for a newly inserted node
@@ -391,6 +504,8 @@ public class CircularSkipListSet extends SkipListSet {
     private final int height;
     // Will need some data
     private final int data; // Maybe this doesn't want to be an int. Dunno.
+    // How many elements does our next link skip over?
+    private int skipCount;
 
     // Constructor. I think data and the 'down' element are enough.
     private Element(int inData, int inHeight, Element inDown) {
@@ -448,6 +563,14 @@ public class CircularSkipListSet extends SkipListSet {
     // Will need to be able to return its data
     private int getData() {
       return data;
+    }
+
+    private int getSkipCount() {
+      return skipCount;
+    }
+
+    private void setSkipCount(int inSkipCount) {
+      skipCount = inSkipCount;
     }
   }
 

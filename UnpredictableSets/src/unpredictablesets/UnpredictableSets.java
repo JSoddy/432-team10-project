@@ -1,6 +1,7 @@
 package unpredictablesets;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,39 +15,30 @@ public class UnpredictableSets {
   public static void main(String[] args) {
 
     SkipListSet testSet1 = new SkipListSet();
-    SkipListSet testSet2 = new CircularSkipListSet();
+    CircularSkipListSet testSet2 = new CircularSkipListSet();
     
-//    for (int i = -2000; i < 2000; i += 5){
-//      int j = (int) ((Math.random() - .5) * i);
-//      testSet2.addElement(j);
-//    }
-//    
-//    testSet2.diag();
     
+    testSet2.diag();
+    testSet2.skipDiag();
+    
+    for (int i = 1; i < 25; i++){
+      int j = (int) (i * 500 * (Math.random() - .5));
+      testSet2.addElement(j);
+    testSet2.diag();
+    testSet2.skipDiag();
+    }
+    testSet2.diag();
+    testSet2.skipDiag();
+    
+    ArrayList<Integer> list = testSet2.getContents();
+    
+    for (int i = 1; i < list.size(); i += 2){
+      testSet2.removeElement(list.get(i));
+      testSet2.diag();
+      testSet2.skipDiag();
+    }
 
-    Timestamp timer = new Timestamp(System.nanoTime());
-    for (int i = -2000000000; i < 2000000000; i += 500) {
-      //int j = (int) ((Math.random() - .5) * i);
-      testSet1.addElement(i);
+    
+    
     }
-    System.out.println(System.nanoTime() - timer.getTime());
-    timer = new Timestamp(System.nanoTime());
-    for (int i = -2000000000; i < 2000000000; i += 500) {
-      //int j = (int) ((Math.random() - .5) * i);
-      testSet2.addElement(i);
-    }
-    System.out.println(System.nanoTime() - timer.getTime());
-    timer = new Timestamp(System.nanoTime());
-    testSet1.isInSet(5000);
-    System.out.println(System.nanoTime() - timer.getTime());
-    timer = new Timestamp(System.nanoTime());
-    testSet2.isInSet(5000);
-    System.out.println(System.nanoTime() - timer.getTime());
-    timer = new Timestamp(System.nanoTime());
-    System.out.println(testSet1.getContents().size());
-    System.out.println(System.nanoTime() - timer.getTime());
-    timer = new Timestamp(System.nanoTime());
-    System.out.println(testSet2.getContents().size());
-    System.out.println(System.nanoTime() - timer.getTime());
-  }
 }
