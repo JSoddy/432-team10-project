@@ -1,0 +1,41 @@
+
+~ 1 minute: Intro
+		Bakground
+		What is our data structure
+		Purpose
+		History
+		Benefits
+		(Mention Paper)
+
+~ 1 minute: Visualization
+		Small size set
+		Make clear what happens with each operation
+			add, delete, relevel, derandomize?
+		Both standard and circular versions
+
+brief: Impress
+		Visual of what our circular data structure looks like with many elements
+			"After another 600,000 add operations, it looks like this!"
+
+~ 1 minute: We made this!
+		Discuss the results of our trial runs.
+		Respons times in different situations
+		Cost of circular during normal operations
+		benefits when under attack
+		How did our results compare with our expectations?
+
+brief: Deviation
+		How do we differ from the paper's proposal?
+		Is anything in our implementatio less than ideal?
+
+brief: It's even better!
+		Discuss the benefits of our algorithm vs. a standard randomized-height
+		skip-list.
+		Keep this high-level.
+		Maybe bust out "the equation" just for fun.
+
+~30 sec: Conclusion
+		Summarize
+		Things we didn't do?
+		Areas for further research
+		New application ideas

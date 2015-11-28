@@ -1,5 +1,8 @@
 package unpredictablesets;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
 /**
  *
  * @author Group 10
@@ -10,33 +13,32 @@ public class UnpredictableSets {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+
+    SkipListSet testSet1 = new SkipListSet();
+    CircularSkipListSet testSet2 = new CircularSkipListSet();
     
-    SkipListSet testSet = new SkipListSet();
     
-    testSet.diag();
+    testSet2.diag();
+    testSet2.skipDiag();
     
-    testSet.addElement(5);
-    System.out.println(testSet.addElement(3));
-    testSet.addElement(999);
-    testSet.addElement(77);
-    
-    System.out.println(testSet.getContents());
-    testSet.diag();
-    
-    testSet.removeElement(77);
-    
-    for (int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE - 10000001; i += (int)(Math.random() * 1000)){
-      testSet.addElement(i);
+    for (int i = 1; i < 25; i++){
+      int j = (int) (i * 500 * (Math.random() - .5));
+      testSet2.addElement(j);
+    testSet2.diag();
+    testSet2.skipDiag();
     }
+    testSet2.diag();
+    testSet2.skipDiag();
     
-    System.out.println(testSet.isInSet(800));
-    System.out.println(testSet.isInSet(3));
-    System.out.println(testSet.isInSet(77));
+    ArrayList<Integer> list = testSet2.getContents();
     
-    testSet.removeElement(3);
-    System.out.println(testSet.isInSet(3));
-    System.out.println(testSet.getContents().size());
-    testSet.diag();
-  }
-  
+    for (int i = 1; i < list.size(); i += 2){
+      testSet2.removeElement(list.get(i));
+      testSet2.diag();
+      testSet2.skipDiag();
+    }
+
+    
+    
+    }
 }
