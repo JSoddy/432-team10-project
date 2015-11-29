@@ -1,0 +1,37 @@
+
+
+
+Slide 24/25 (There is some ambiguity over in which location these should go) :
+The logic in the paper for searching was somewhat confusing, and had some elements which didn't work make sense
+with some of the changes we had made. We used a search logic with fewer logical elements, because it was simpler
+and made good sense with our structure.
+
+We chose not to implement the index field as described in the paper. Rather than operating by direct index, we
+always chose our random elements as an offset from our current head.
+
+	In the algorithm proposal, they discussed using an origin which was separate from any
+of the actual data elements. In our implementation, we have head element which is just a regular data element
+chosen at random each time. The reason for this is that there was a great deal of additional complexity
+in keeping the origin accurate with each operation. The drawback is that it perhaps increased the cost
+of all find/add/remove operations by about 50% because we had to resize both the head element and the previous
+head element on each operation. This also leaks some possibly exploitable information. Those concerns were unimportant
+for our purposes.
+
+Additionally, we made slight changes to how elements are resized on operations. (This is due to our head, in fact.) In
+the paper they chose a new height before attempting to insert and then either added the element at the new height or, if
+the element already existed, resized the origin target to the chosen height. Because were uesed an actual element as head,
+we had to resize an element even if we successfully inserted a new element.
+
+Slide 29:
+
+It would have been nice to implement a fully random regular skip list, and do analysis on timing to see if we
+could find exploitable information. This sort of analysis proved to be beyond the scope of our project.
+
+Slide 30:
+
+It would be trivial to apply the same principals to a multiset data type.
+
+A similar implementation in a binary search tree could be used to prevent the distribution from becoming degenerate
+when subject to an unfavorable series of insertions and deletions. 
+
+???
