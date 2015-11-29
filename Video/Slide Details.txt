@@ -1,6 +1,40 @@
 
 
 
+Slide 17:
+	We had some question as to the actual costs and benefits of using the randomized structure in practice. We
+wanted to have some concrete numbers to show, to show precisely why such a structure was important.
+
+	Some aspects of the algorithm and the paper were confusing. We thought that by implementing it, not only would
+it help us to clarify those elements for others who don't want to take time studying the paper, but it would
+greatly improve our understanding of how the structure works as well.
+
+Slide 18:
+	We had some odd results that we didn't expect. For both the standard and the circular lists, some set sizes
+seemed inclined to faster searches than others, even though they might be dozens of times larger. We assume that
+is mostly due to random variation and implementation quirks. For larger data sets the timing smoothed out to look
+very much like what we expected.
+
+Slide 19/20:
+	Our results showed that our circular implementation performed around three times slower under normal operation
+than the standard skip-list across all sizes. However, at large data sizes, and when under attack, the circular
+list performed hundreds or even thousands of times faster.
+
+Slide 21/22/23:
+	Our results are very close to what we expected. Although the costs of maintaining the circular list were slightly
+higher than we expected, all of the operations still operated clearly within logarithmic time. We think it is likely
+that with a little more care, and some code optimization, we could reduce the cost of most operations under the
+circular list by around 1/2, putting them more in line with our expectations. We were pleased by
+how well the structure held up under attack, and how stark the difference was between the standard and circular lists.
+
+	Many of the small operational details were much more challenging to implement than was initially expected. Some
+of the differences between the standard and circular lists, which we had assumed would just require minor tweaks to
+put in place, in fact ended up necessitating a complete rewrite of many of our methods.
+
+	We had hoped to run operations on sets with membership in the 100 million range, and from a computation time
+standpoint this should have been possible, but it turns out memory constrainsts put a firm limit on the size of our
+work at about 1/10th of that.
+
 Slide 24/25 (There is some ambiguity over in which location these should go) :
 The logic in the paper for searching was somewhat confusing, and had some elements which didn't work make sense
 with some of the changes we had made. We used a search logic with fewer logical elements, because it was simpler
