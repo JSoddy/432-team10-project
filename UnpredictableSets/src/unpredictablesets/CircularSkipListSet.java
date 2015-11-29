@@ -188,7 +188,7 @@ public class CircularSkipListSet extends SkipListSet {
       System.out.printf("%5d", currentPos.data);
       do {
         for (int i = 1; i < currentPos.skipCount; i++) {
-          System.out.print("  -  ");
+          System.out.print(" --- ");
         }
         currentPos = currentPos.next;
         System.out.printf("%5d", currentPos.data);
