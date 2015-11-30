@@ -18,6 +18,7 @@
     <MediaItem id="24" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\11 TEMP.PNG" arWidth="1393" arHeight="783" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="25" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Title Screen.PNG" arWidth="1392" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="8" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\8.PNG" arWidth="1394" arHeight="786" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="26" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Final SLide.PNG" arWidth="96" arHeight="54" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="9" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\9.PNG" arWidth="1393" arHeight="785" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="10" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\10.PNG" arWidth="1392" arHeight="787" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="11" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\12.PNG" arWidth="1393" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
@@ -28,35 +29,35 @@
     <MediaItem id="16" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\17.PNG" arWidth="1393" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
   </MediaItems>
   <Extents>
-    <ImageClip extentID="17" gapBefore="0" mediaItemID="13" duration="12.5">
+    <ImageClip extentID="17" gapBefore="0" mediaItemID="13" duration="18">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="18" gapBefore="0" mediaItemID="14" duration="12.5">
+    <ImageClip extentID="18" gapBefore="0" mediaItemID="14" duration="14">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="19" gapBefore="0" mediaItemID="15" duration="12.5">
+    <ImageClip extentID="19" gapBefore="0" mediaItemID="15" duration="10">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="20" gapBefore="0" mediaItemID="16" duration="12.5">
+    <ImageClip extentID="20" gapBefore="0" mediaItemID="16" duration="7">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="21" gapBefore="0" mediaItemID="17" duration="12.5">
+    <ImageClip extentID="21" gapBefore="0" mediaItemID="17" duration="7">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -70,35 +71,35 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="22" gapBefore="0" mediaItemID="18" duration="12.5">
+    <ImageClip extentID="22" gapBefore="0" mediaItemID="18" duration="25">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="6" gapBefore="0" mediaItemID="2" duration="12.5">
+    <ImageClip extentID="6" gapBefore="0" mediaItemID="2" duration="11">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="23" gapBefore="0" mediaItemID="19" duration="12.5">
+    <ImageClip extentID="23" gapBefore="0" mediaItemID="19" duration="11.5">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="7" gapBefore="0" mediaItemID="3" duration="12.5">
+    <ImageClip extentID="7" gapBefore="0" mediaItemID="3" duration="21.5">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="24" gapBefore="0" mediaItemID="20" duration="12.5">
+    <ImageClip extentID="24" gapBefore="0" mediaItemID="20" duration="11.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -112,7 +113,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="25" gapBefore="0" mediaItemID="21" duration="12.5">
+    <ImageClip extentID="25" gapBefore="0" mediaItemID="21" duration="11.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -126,14 +127,14 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="26" gapBefore="0" mediaItemID="22" duration="12.5">
+    <ImageClip extentID="26" gapBefore="0" mediaItemID="22" duration="17.5">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="10" gapBefore="0" mediaItemID="6" duration="12.5">
+    <ImageClip extentID="10" gapBefore="0" mediaItemID="6" duration="9">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -148,21 +149,21 @@
         <BoundPropertyFloat Name="Volume" Value="1" />
       </BoundProperties>
     </AudioClip>
-    <ImageClip extentID="11" gapBefore="0" mediaItemID="7" duration="12.5">
+    <ImageClip extentID="11" gapBefore="0" mediaItemID="7" duration="11.5">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="28" gapBefore="0" mediaItemID="24" duration="7">
+    <ImageClip extentID="28" gapBefore="0" mediaItemID="24" duration="4">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="29" gapBefore="0" mediaItemID="25" duration="2.3999999999999999">
+    <ImageClip extentID="29" gapBefore="0" mediaItemID="25" duration="4">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -176,7 +177,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="13" gapBefore="0" mediaItemID="9" duration="12.5">
+    <ImageClip extentID="13" gapBefore="0" mediaItemID="9" duration="13">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -190,14 +191,21 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="15" gapBefore="0" mediaItemID="11" duration="12.5">
+    <ImageClip extentID="32" gapBefore="0" mediaItemID="26" duration="2">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="16" gapBefore="0" mediaItemID="12" duration="12.5">
+    <ImageClip extentID="15" gapBefore="0" mediaItemID="11" duration="6">
+      <Effects />
+      <Transitions />
+      <BoundProperties>
+        <BoundPropertyInt Name="rotateStepNinety" Value="0" />
+      </BoundProperties>
+    </ImageClip>
+    <ImageClip extentID="16" gapBefore="0" mediaItemID="12" duration="16">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -233,6 +241,7 @@
         <ExtentRef id="24" />
         <ExtentRef id="25" />
         <ExtentRef id="26" />
+        <ExtentRef id="32" />
       </ExtentRefs>
     </ExtentSelector>
     <ExtentSelector extentID="2" gapBefore="0" primaryTrack="false">
