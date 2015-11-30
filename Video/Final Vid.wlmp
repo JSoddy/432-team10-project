@@ -2,27 +2,27 @@
 <Project name="Final Vid" themeId="0" version="65540" templateID="SimpleProjectTemplate">
   <MediaItems>
     <MediaItem id="17" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\18.PNG" arWidth="1393" arHeight="783" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="1" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\1.PNG" arWidth="1192" arHeight="671" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="18" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\19.PNG" arWidth="1395" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="2" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\2.PNG" arWidth="1193" arHeight="671" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="1" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\1.PNG" arWidth="1192" arHeight="671" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="19" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\20.PNG" arWidth="1395" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="3" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\3.PNG" arWidth="1191" arHeight="672" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="2" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\2.PNG" arWidth="1193" arHeight="671" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="20" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\21.PNG" arWidth="1393" arHeight="785" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="4" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\4.PNG" arWidth="799" arHeight="450" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="3" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\3.PNG" arWidth="1191" arHeight="672" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="21" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\22.PNG" arWidth="1394" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="4" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\4.PNG" arWidth="799" arHeight="450" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="22" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\23.PNG" arWidth="96" arHeight="54" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="5" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\5.PNG" arWidth="1394" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="22" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\23.PNG" arWidth="1393" arHeight="783" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="6" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\6.PNG" arWidth="1394" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="23" filePath="C:\Users\Jimmy\Documents\Schoolwork\AdvAlgs\432-team10-project\Video\Recording.m4a" arWidth="0" arHeight="0" duration="291.0366439" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="3" />
+    <MediaItem id="6" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\6.PNG" arWidth="1394" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="7" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\7.PNG" arWidth="1393" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="24" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\11 TEMP.PNG" arWidth="1393" arHeight="783" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="25" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Title Screen.PNG" arWidth="1392" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="8" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\8.PNG" arWidth="1394" arHeight="786" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="26" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Final SLide.PNG" arWidth="96" arHeight="54" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="25" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Title Screen.PNG" arWidth="1392" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="9" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\9.PNG" arWidth="1393" arHeight="785" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="10" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\10.PNG" arWidth="1392" arHeight="787" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="26" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\Final SLide.PNG" arWidth="1389" arHeight="781" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="27" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\11.PNG" arWidth="1392" arHeight="783" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="10" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\10.PNG" arWidth="96" arHeight="54" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="11" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\12.PNG" arWidth="1393" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
-    <MediaItem id="12" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\13.PNG" arWidth="1393" arHeight="782" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
+    <MediaItem id="12" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\13.PNG" arWidth="96" arHeight="54" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="13" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\14.PNG" arWidth="1395" arHeight="785" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="14" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\15.PNG" arWidth="1393" arHeight="785" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
     <MediaItem id="15" filePath="C:\Users\Jimmy\Pictures\AdvAlgs PPT\16.PNG" arWidth="1393" arHeight="784" duration="0" songTitle="" songArtist="" songAlbum="" songCopyrightUrl="" songArtistUrl="" songAudioFileUrl="" stabilizationMode="0" mediaItemType="2" />
@@ -64,13 +64,6 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="5" gapBefore="0" mediaItemID="1" duration="12.5">
-      <Effects />
-      <Transitions />
-      <BoundProperties>
-        <BoundPropertyInt Name="rotateStepNinety" Value="0" />
-      </BoundProperties>
-    </ImageClip>
     <ImageClip extentID="22" gapBefore="0" mediaItemID="18" duration="25">
       <Effects />
       <Transitions />
@@ -78,7 +71,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="6" gapBefore="0" mediaItemID="2" duration="11">
+    <ImageClip extentID="5" gapBefore="0" mediaItemID="1" duration="12.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -92,7 +85,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="7" gapBefore="0" mediaItemID="3" duration="21.5">
+    <ImageClip extentID="6" gapBefore="0" mediaItemID="2" duration="11">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -106,7 +99,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="8" gapBefore="0" mediaItemID="4" duration="12.5">
+    <ImageClip extentID="7" gapBefore="0" mediaItemID="3" duration="21.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -120,7 +113,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="9" gapBefore="0" mediaItemID="5" duration="12.5">
+    <ImageClip extentID="8" gapBefore="0" mediaItemID="4" duration="12.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -134,7 +127,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="10" gapBefore="0" mediaItemID="6" duration="9">
+    <ImageClip extentID="9" gapBefore="0" mediaItemID="5" duration="12.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -149,6 +142,13 @@
         <BoundPropertyFloat Name="Volume" Value="1" />
       </BoundProperties>
     </AudioClip>
+    <ImageClip extentID="10" gapBefore="0" mediaItemID="6" duration="9">
+      <Effects />
+      <Transitions />
+      <BoundProperties>
+        <BoundPropertyInt Name="rotateStepNinety" Value="0" />
+      </BoundProperties>
+    </ImageClip>
     <ImageClip extentID="11" gapBefore="0" mediaItemID="7" duration="11.5">
       <Effects />
       <Transitions />
@@ -156,7 +156,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="28" gapBefore="0" mediaItemID="24" duration="4">
+    <ImageClip extentID="12" gapBefore="0" mediaItemID="8" duration="12.5">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -170,7 +170,7 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="12" gapBefore="0" mediaItemID="8" duration="12.5">
+    <ImageClip extentID="30" gapBefore="0" mediaItemID="27" duration="4">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -191,14 +191,14 @@
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="32" gapBefore="0" mediaItemID="26" duration="2">
+    <ImageClip extentID="15" gapBefore="0" mediaItemID="11" duration="6">
       <Effects />
       <Transitions />
       <BoundProperties>
         <BoundPropertyInt Name="rotateStepNinety" Value="0" />
       </BoundProperties>
     </ImageClip>
-    <ImageClip extentID="15" gapBefore="0" mediaItemID="11" duration="6">
+    <ImageClip extentID="32" gapBefore="0" mediaItemID="26" duration="2">
       <Effects />
       <Transitions />
       <BoundProperties>
@@ -228,7 +228,7 @@
         <ExtentRef id="12" />
         <ExtentRef id="13" />
         <ExtentRef id="14" />
-        <ExtentRef id="28" />
+        <ExtentRef id="30" />
         <ExtentRef id="15" />
         <ExtentRef id="16" />
         <ExtentRef id="17" />
@@ -269,8 +269,8 @@
     <BoundPlaceholder placeholderID="SingleExtentView" extentID="0" />
     <BoundPlaceholder placeholderID="Main" extentID="1" />
     <BoundPlaceholder placeholderID="SoundTrack" extentID="2" />
-    <BoundPlaceholder placeholderID="Narration" extentID="3" />
     <BoundPlaceholder placeholderID="Text" extentID="4" />
+    <BoundPlaceholder placeholderID="Narration" extentID="3" />
   </BoundPlaceholders>
   <BoundProperties>
     <BoundPropertyFloatSet Name="AspectRatio">
