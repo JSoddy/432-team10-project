@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh13040\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs32 \cf0 1) For our presentation, group 10 studied and built an implementation of the circular skip list.\
+\
+2) Predictable data structures have the potential to be abused with denial of service attacks. Predictable timing can make data structures particularly vulnerable to such attacks as will be shown.\
+\
+3) The goal is to create a data structure which negates the benefit of such attacks. The structure must be adaptable to a variety of conditions with out sacrificing speed even if the attacker knows what structure is being used.\
+\
+4) The data structure must be capable of all basic list operations. A linked list works but is susceptible to denial of service attacks because it\'92s predictable. A skip list is less so.\
+\
+5) A skip list can be thought of as a multi-level linked list with each node connecting to the one beneath and beside it. If there are no other nodes in its row it goes to a null value tail. \
+\
+6) A circular  skip  list  is  simply  a  skip  list  whose tail is connected to it\'92s head, effectively removing any standard starting or stopping point. This means that an origin can be chosen at random.\
+\
+6) The benefits of a circular skip list are that they retain the relative efficiency of a linked list. That they have an untrackable probability distribution. That they are unpredictable in their timing.\
+\
+7) Operations the skip list needs to be capable of are insertion, deletion, search, change of height, and change of origin.\
+\
+8) When inserting a node, we first check at the origin, if the node is a greater value we move right, if no node exists, we go down a level and try again until we\'92ve found a greater value, then go back one spot to insert the node.\
+\
+9) Deleting nodes is handled much the same as in a linked list. All references to the node are adjusted  to  link  to  the  next  node in the list and when the node is removed the height of the  list  it\'92s  in  is  re-adjusted.\
+\
+10) As previously noted, the orientation in a circular skip list can be chosen at random. When a new origin is chosen it is then considered to be at the head of the list and the old origin looses the honor.\
+\
+11) When adding or deleting a node, the height must be adjusted to reflect the new height after the operation. We used a skip count to insure all necessary elements were updated.\
+\
+12) This slide gives you an idea of what it looks like on large sets.\
+\
+13) And as you can see, we were actually able to implement this design ourselves programming in java.\
+\
+14) We had some question as to the actual costs and benefits of using the randomized structure in practice so we wanted to have some concrete numbers that would show why such a structure is important. We felt that implementing it would help us to understand and to illustrate the topic.\
+\
+15) Some results we didn't expect. For example, some set sizes seemed inclined to faster searches than others, even though they might be dozens of times larger. We assume that is mostly due to random variation and implementation quirks. For larger data sets the timing finally smoothed out and better reflected our expectations.\
+\
+16) The practical benefits of a circular skip list were a bit worse than the theoretical, however, they were reasonable and were very apparent as the data sets became rather large.\
+\
+17) Here is a comparison of the time of different operations using a regular skip list vs a circular skip list. This comparison does not include tall elements.\
+\
+18) Here is a comparison including the tall elements.\
+\
+19) And another of leveled out lists or lists without tall elements.\
+\
+20) We did create a search with fewer logical elements than the proposed. We also chose not to implement the index field as described in the paper. Rather than operating by direct index, we always chose random elements as an offset from our current head and used a regular data element as the head each time instead of the proposed separate head element. This increased the cost of each operation because we had to resize the new head and previous head, but this was a much simpler implementation.\
+\
+21) Some difficulties included having to keep track of offsets with each operation, keeping track of the origin, and trying to keep the resizing relatively efficient.\
+\
+22) If we were to continue, it would have been nice to implement a fully random regular skip list, and do analysis on timing to see if we could find exploitable information.\
+\
+23) This research could also be further used with other data types such as a binary tree which may be used to prevent the distribution from becoming degenerate when subject to an unfavorable series of insertions and deletions.\
+\
+24) In conclusion, a circular skip list is similar to a linked list in many ways. With this implementation, however, a circular skip list is far more secure because the origin can be chosen at random and the timing is unpredictable making it very difficult to attack, even when attackers know it is being used.}
